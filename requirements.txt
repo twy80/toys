@@ -1,0 +1,6 @@
+numpy
+imageio.v3
+openai
+os
+clipboard
+streamlit
