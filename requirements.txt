@@ -1,4 +1,5 @@
 numpy
+scikit-image
 imageio
 openai
 clipboard
