@@ -1,5 +1,5 @@
 numpy
-imageio.v3
+imageio
 openai
 os
 clipboard
