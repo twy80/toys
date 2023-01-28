@@ -4,7 +4,7 @@ Code∙text∙image generation using openai API (by T.-W. Yoon, Jan. 2023)
 
 import openai
 import streamlit as st
-import os, clipboard
+import clipboard
 
 
 def openai_create_text(description, temperature=0.6):
@@ -86,7 +86,8 @@ def openai_create_image(description, returning=False):
 
 
 def openai_create():
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+    # openai.api_key = os.getenv("OPENAI_API_KEY")
+    openai.api_key = "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"
 
     st.write("## :computer: OpenAI Generator")
 

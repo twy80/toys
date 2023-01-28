@@ -46,10 +46,11 @@ def reset_conversation():
 
 
 def chat_gpt():
-    import os, clipboard
+    import clipboard
 
     # Set the API key from the environment variable
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+    # openai.api_key = os.getenv("OPENAI_API_KEY")
+    openai.api_key = "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"
 
     st.write("## :computer: OpenAI Chat")
 
