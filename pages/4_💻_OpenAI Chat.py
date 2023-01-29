@@ -15,7 +15,7 @@ AI: I am an AI created by OpenAI. How can I help you today?
 """
 
 
-def openai_create(prompt, temperature=0.8, max_token=200, presence_penalty=0.6):
+def openai_create(prompt, temperature=0.8, max_token=512, presence_penalty=0.6):
     try:
         if st.session_state.new_conversation:
             st.session_state.generated_text = ""
@@ -47,9 +47,8 @@ def reset_conversation():
 
 def chat_gpt():
     st.write("## :computer: OpenAI Chat")
-
     # openai.api_key = os.getenv("OPENAI_API_KEY")
-    openai.api_key = st.text_input("Your OpenAI API Key: ")
+    openai.api_key = st.text_input("$\\hspace{0.25em}\\texttt{Your OpenAI API Key}$")
 
     # start_sequence = "\nAI: "
     restart_sequence = "\nHuman: "
