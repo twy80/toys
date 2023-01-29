@@ -4,7 +4,7 @@ Code∙text∙image generation using openai API (by T.-W. Yoon, Jan. 2023)
 
 import openai
 import streamlit as st
-import clipboard
+# import clipboard
 
 
 def openai_create_text(description, temperature=0.6):
@@ -24,7 +24,7 @@ def openai_create_text(description, temperature=0.6):
                 # stop=["\n"]
             )
             output_message = response.choices[0].text
-            clipboard.copy(output_message)
+            # clipboard.copy(output_message)
         except openai.error.OpenAIError as e:
             output_message = f"An error occurred: {e}"
 
@@ -48,7 +48,7 @@ def openai_create_code(description, temperature=0):
                 # stop=["\n"]
             )
             output_code = response.choices[0].text
-            clipboard.copy(output_code)
+            # clipboard.copy(output_code)
         except openai.error.OpenAIError as e:
             output_code = f"An error occurred: {e}"
 
