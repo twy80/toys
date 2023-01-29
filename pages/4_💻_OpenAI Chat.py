@@ -46,13 +46,10 @@ def reset_conversation():
 
 
 def chat_gpt():
-    import clipboard
-
-    # Set the API key from the environment variable
-    # openai.api_key = os.getenv("OPENAI_API_KEY")
-    openai.api_key = "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"
-
     st.write("## :computer: OpenAI Chat")
+
+    # openai.api_key = os.getenv("OPENAI_API_KEY")
+    openai.api_key = st.text_input("Your OpenAI API Key: ")
 
     # start_sequence = "\nAI: "
     restart_sequence = "\nHuman: "
@@ -101,7 +98,7 @@ def chat_gpt():
         st.session_state.human_enq.append(human_enq)
         st.session_state.ai_resp.append(st.session_state.generated_text)
 
-    clipboard.copy(f"{st.session_state.prompt}\n")
+    # clipboard.copy(f"{st.session_state.prompt}\n")
     st.session_state.new_conversation = False
 
 
