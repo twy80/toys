@@ -83,7 +83,7 @@ def svd_plot(output_rank):
         )
         right.image(
             image=st.session_state.input_image,
-            caption=f"Original rank-{st.session_state.rank} image",
+            caption=f"Original {st.session_state.image_dim[0]}x{st.session_state.image_dim[1]} image",
             use_column_width=True
         )
 
@@ -117,7 +117,7 @@ def run_svd_image():
             image_shape = original_image.shape
 
             # If the image is grayscale, channels = 1
-            channels = 1 if len(image_shape) == 2 else image_shape[2]
+            # channels = 1 if len(image_shape) == 2 else image_shape[2]
 
             # rank = 1
             # with st.spinner("Computing the rank of the uploaded image"):
@@ -132,12 +132,12 @@ def run_svd_image():
             st.session_state.image_dim = image_shape[:2]
             # st.session_state.rank = rank
 
-        no_rows, no_columns = st.session_state_image_dim
+        no_rows, no_columns = st.session_state.image_dim
         max_rank = min(no_rows, no_columns)
 
         # Write the information of the uploaded image
         st.write(
-            "A", no_rows, "x", no_columns, "image is uploaded"
+            "Uploaded image: ", no_rows, "x", no_columns
         )
 
         # Input the rank of the compressed image
