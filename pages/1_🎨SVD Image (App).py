@@ -67,24 +67,25 @@ def svd_plot(output_rank):
     This function calls svd_image() and plot the results.
     """
 
-    output_image = svd_image(
-        st.session_state.input_image, output_rank, st.session_state.new_image
-    )                           # Compress the image by SVD
-    st.session_state.new_image = False
+    with st.spinner("Performing the SVD"):
+        output_image = svd_image(
+            st.session_state.input_image, output_rank, st.session_state.new_image
+        )                           # Compress the image by SVD
+        st.session_state.new_image = False
 
-    # Plot the resulting image
+        # Plot the resulting image
 
-    left, right = st.columns(2)
-    left.image(
-        image=output_image,
-        caption=f"Rank-{output_rank} image",
-        use_column_width=True
-    )
-    right.image(
-        image=st.session_state.input_image,
-        caption=f"Original rank-{st.session_state.rank} image",
-        use_column_width=True
-    )
+        left, right = st.columns(2)
+        left.image(
+            image=output_image,
+            caption=f"Rank-{output_rank} image",
+            use_column_width=True
+        )
+        right.image(
+            image=st.session_state.input_image,
+            caption=f"Original rank-{st.session_state.rank} image",
+            use_column_width=True
+        )
 
 
 def run_svd_image():
@@ -118,12 +119,13 @@ def run_svd_image():
             # If the image is grayscale, channels = 1
             channels = 1 if len(image_shape) == 2 else image_shape[2]
 
-            for i in range(channels):  # Compute the rank of each channel
-                rank = 1
-                if channels == 1:
-                    rank = np.linalg.matrix_rank(original_image)
-                else:
-                    rank = max(rank, np.linalg.matrix_rank(original_image[:, :, i]))
+            rank = 1
+            with st.spinner("Computing the rank of the uploaded image"):
+                for i in range(channels):  # Compute the rank of each channel
+                    if channels == 1:
+                        rank = np.linalg.matrix_rank(original_image)
+                    else:
+                        rank = max(rank, np.linalg.matrix_rank(original_image[:, :, i]))
 
             # Store the image together with the rank and dimension
             st.session_state.input_image = original_image
@@ -153,7 +155,11 @@ def run_svd_image():
         )
 
         # Compress the image by SVD
-        st.button("Perform SVD", on_click=svd_plot(output_rank))
+        st.button(
+            "Perform SVD",
+            on_click=svd_plot(output_rank),
+            type="primary"
+        )
 
 
 if __name__ == "__main__":
