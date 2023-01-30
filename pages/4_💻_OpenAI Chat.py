@@ -34,7 +34,7 @@ def openai_create(prompt, temperature=0.8, max_token=512, presence_penalty=0.6):
             st.session_state.generated_text = response.choices[0].text+"\n"
     except openai.error.OpenAIError as e:
         st.session_state.generated_text = ""
-        st.write(f"An error occurred: {e}")
+        st.error(f"An error occurred: {e}", icon="🚨")
 
     st.session_state.prompt = prompt + st.session_state.generated_text
 
