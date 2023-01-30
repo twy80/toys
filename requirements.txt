@@ -3,3 +3,4 @@ scikit-image
 imageio
 openai
 streamlit
+streamlit_chat

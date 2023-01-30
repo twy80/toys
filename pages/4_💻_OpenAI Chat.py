@@ -43,9 +43,12 @@ def reset_conversation():
     st.session_state.new_conversation = True
     st.session_state.human_enq = []
     st.session_state.ai_resp = []
+    st.session_state.user_inputs = []    
 
 
 def chat_gpt():
+    from streamlit_chat import message
+
     st.write("## :computer: OpenAI Chat")
     # openai.api_key = os.getenv("OPENAI_API_KEY")
     openai.api_key = st.text_input(
@@ -67,19 +70,22 @@ def chat_gpt():
     if "ai_resp" not in st.session_state:
         st.session_state.ai_resp = []
 
+    if "user_inputs" not in st.session_state:
+        st.session_state.user_inputs = []    
+
     if st.session_state.new_conversation:
         st.session_state.prompt = initial_prompt
 
-    st.write(f" #### Human and AI talking to each other")
+    # st.write(f" #### Human and AI talking to each other")
 
-    for conversation in zip(st.session_state.human_enq, st.session_state.ai_resp):
-        st.write(f"{conversation[0]}")
-        st.write(f"{conversation[1]}")
+    # for conversation in zip(st.session_state.human_enq, st.session_state.ai_resp):
+    #    st.write(f"{conversation[0]}")
+    #    st.write(f"{conversation[1]}")
     # st.write(f"{st.session_state.prompt}")
 
     # Get the code description from the user
     user_input = st.text_area(
-        label="$\\hspace{0.25em}\\texttt{Human:}$",
+        label="$\\hspace{0.25em}\\texttt{Human}$",
         value="",
         label_visibility="visible"
     )
@@ -98,9 +104,14 @@ def chat_gpt():
     )
 
     if not st.session_state.new_conversation:
-        st.write(st.session_state.generated_text)
+        # st.write(st.session_state.generated_text)
         st.session_state.human_enq.append(human_enq)
         st.session_state.ai_resp.append(st.session_state.generated_text)
+        st.session_state.user_inputs.append(user_input)
+
+        for i in range(len(st.session_state.ai_resp)-1, -1, -1):
+            message(st.session_state.ai_resp[i][6:], key=str(i))
+            message(st.session_state.user_inputs[i], is_user=True, key=str(i) + '_user')
 
     # clipboard.copy(f"{st.session_state.prompt}\n")
     st.session_state.new_conversation = False
