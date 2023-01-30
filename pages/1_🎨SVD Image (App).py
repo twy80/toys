@@ -119,24 +119,25 @@ def run_svd_image():
             # If the image is grayscale, channels = 1
             channels = 1 if len(image_shape) == 2 else image_shape[2]
 
-            rank = 1
-            with st.spinner("Computing the rank of the uploaded image"):
-                for i in range(channels):  # Compute the rank of each channel
-                    if channels == 1:
-                        rank = np.linalg.matrix_rank(original_image)
-                    else:
-                        rank = max(rank, np.linalg.matrix_rank(original_image[:, :, i]))
+            # rank = 1
+            # with st.spinner("Computing the rank of the uploaded image"):
+            #    for i in range(channels):  # Compute the rank of each channel
+            #        if channels == 1:
+            #            rank = np.linalg.matrix_rank(original_image)
+            #        else:
+            #            rank = max(rank, np.linalg.matrix_rank(original_image[:, :, i]))
 
             # Store the image together with the rank and dimension
             st.session_state.input_image = original_image
             st.session_state.image_dim = image_shape[:2]
-            st.session_state.rank = rank
+            # st.session_state.rank = rank
+
+        no_rows, no_columns = st.session_state_image_dim
+        max_rank = min(no_rows, no_columns)
 
         # Write the information of the uploaded image
         st.write(
-            "Uploaded image:",
-            st.session_state.image_dim[0], "x", st.session_state.image_dim[1],
-            "pixels of rank", st.session_state.rank
+            "A", no_rows, "x", no_columns, "image is uploaded"
         )
 
         # Input the rank of the compressed image
@@ -149,7 +150,8 @@ def run_svd_image():
         output_rank = input_method(
             label="$\\hspace{0.25em}\\texttt{Rank of the compressed image}$",
             min_value=1,
-            max_value=int(st.session_state.rank),
+            # max_value=st.session_state.rank,
+            max_value=max_rank,
             step=1,
             label_visibility="visible"
         )
