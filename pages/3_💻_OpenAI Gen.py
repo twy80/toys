@@ -90,6 +90,8 @@ def openai_create():
     # openai.api_key = os.getenv("OPENAI_API_KEY")
     openai.api_key = st.text_input("$\\hspace{0.25em}\\texttt{Your OpenAI API Key}$")
 
+    st.write("(You can obtain an API key from https://beta.openai.com.)")
+
     option = st.selectbox(
         "$\\hspace{0.25em}\\texttt{What would you like to generate? Code, Text, or Image?}$",
         ('Code', 'Text', 'Image')
