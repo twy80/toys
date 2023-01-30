@@ -48,7 +48,10 @@ def reset_conversation():
 def chat_gpt():
     st.write("## :computer: OpenAI Chat")
     # openai.api_key = os.getenv("OPENAI_API_KEY")
-    openai.api_key = st.text_input("$\\hspace{0.25em}\\texttt{Your OpenAI API Key}$")
+    openai.api_key = st.text_input(
+        label="$\\hspace{0.25em}\\texttt{Your OpenAI API Key}$",
+        on_change=reset_conversation
+    )
 
     st.write("(You can obtain an API key from https://beta.openai.com.)")
 
