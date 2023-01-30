@@ -143,7 +143,7 @@ def run_svd_image():
         # Input the rank of the compressed image
         option = st.selectbox(
             "How would you set the rank of compressed images? Slider or Textbox?",
-            ("Slider", "Textbox")
+            ("Textbox", "Slider")
         )
 
         input_method = st.slider if option == "Slider" else st.number_input
