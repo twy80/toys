@@ -110,7 +110,7 @@ def chat_gpt():
         st.session_state.user_inputs.append(user_input)
 
         for i in range(len(st.session_state.ai_resp)-1, -1, -1):
-            message(st.session_state.ai_resp[i][6:], key=str(i))
+            message(st.session_state.ai_resp[i].strip()[4:], key=str(i))
             message(st.session_state.user_inputs[i], is_user=True, key=str(i) + '_user')
 
     # clipboard.copy(f"{st.session_state.prompt}\n")
