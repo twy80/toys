@@ -38,9 +38,6 @@ def svd_image_doc():
         If $A$ contains pixels of an image, $\\tilde{A}$ is a compressed image using a reduced
         amount of memory. This is what is meant by image compression via SVD. If a color image
         is given, the SVD can be performed to each of the three channels (e.g. red, green & blue).
-        A set of Python codes for compressing images using SVD is provided
-        [here](https://github.com/twy80/svd_image). How to run this program is simple as
-        shown in [this short video](https://youtu.be/T3ee7lIqPEA).
         """
     )
 
