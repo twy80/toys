@@ -17,28 +17,29 @@ def run_sim():
     from scipy.integrate import odeint
     import streamlit as st
 
-    st.write("## 🚀 Simulation of an RLC Circuit")
+    st.write("## 🚀 Simulation of a Circuit")
 
     st.write("")
     st.image(
         "images/RLC_circuit.jpg",
-        caption="From http://goo.gl/r7DZBQ"
+        caption="Image from http://goo.gl/r7DZBQ"
     )
     st.write("")
 
-    # Input the rank of the compressed image
+    # Choose the unit step or a sine function for the input voltage
     input_choice = st.selectbox(
         "$\\hspace{0.25em}\\texttt{Choice of the input voltage? Unit step or Sine?}$",
         ("Unit step", "Sine")
     )
 
+    # Setting the R, L & C values
     resistor = st.slider(
         label="$\\hspace{0.25em}\\texttt{Resistence}$",
         min_value=0.1,
         max_value=5.0,
         value=1.0,
         step=0.1,
-        label_visibility="visible"
+        format="%.1f"
     )
     inductor = st.slider(
         label="$\\hspace{0.25em}\\texttt{Inductance}$",
@@ -46,7 +47,7 @@ def run_sim():
         max_value=5.0,
         value=1.0,
         step=0.1,
-        label_visibility="visible"
+        format="%.1f"
     )
     capacitor = st.slider(
         label="$\\hspace{0.25em}\\texttt{Capacitance}$",
@@ -54,39 +55,51 @@ def run_sim():
         max_value=5.0,
         value=1.0,
         step=0.1,
-        label_visibility="visible"
+        format="%.1f"
     )
 
-    tspan = np.linspace(0, 10, 101) # 시간 설정 (0, 0.01, …, 10)
+    tspan = np.linspace(0, 10, 101)
 
     args = resistor, inductor, capacitor, input_choice
 
     # Solving the differential equation
 
-    x_init = [0, 0]  # 초깃값 설정
-        # 입력 전압 V와  R, L, C 값은 모두 1이라 가정
+    x_init = [0, 0]  # Initial state
 
-    xs, infodict = odeint(
-        rlc_eqn,
-        x_init,
-        tspan,
-        args,
-        full_output=True,
-    )
+    try:
+        xs, infodict = odeint(
+            rlc_eqn,
+            x_init,
+            tspan,
+            args,
+            full_output=True,
+        )
+        if infodict["message"] != "Integration successful.":
+            st.error("Numerical problems arise.", icon="🚨")
 
-    if infodict["message"] != "Integration successful.":
-        st.error("Numerical problems arise.", icon="🚨")
+    except Exception as e:
+            st.error(f"An error occurred: {e}", icon="🚨")
+
 
     # voltage = len(tspan)*[1.0] if input_choice == "Unit step" else 1.0*np.sin(np.pi*tspan)
 
     st.write("")
-    fig, ax = plt.subplots(2, 1, sharex=True)
-    ax[0].set_title("Time Responses\n")
-    ax[0].plot(tspan, xs[:, 0], "g")
-    ax[0].set_ylabel("$v_C(t)$")
-    ax[1].plot(tspan, xs[:, 1], "b")
-    ax[1].set_ylabel("$i(t)$")
+    fig, ax = plt.subplots(1, 2)
+
+    ax[0].plot(xs[:, 0], xs[:, 1], "r-")  # path
+    ax[0].plot([xs[0, 0]], "s")
+    ax[0].set_xlabel("$v_C(t)$")
+    ax[0].set_ylabel("$i(t)$")
+    ax[0].set_title("Phase portrait")
+    ax[0].set_box_aspect(1)
+
+    ax[1].plot(tspan, xs[:, 0], "g", label="$v_C(t)$")
+    ax[1].plot(tspan, xs[:, 1], "b", label="$i(t)$")
+    ax[1].legend(loc="best")
     ax[1].set_xlabel("Time")
+    ax[1].set_title("Time responses")
+    ax[1].set_box_aspect(1)
+
     st.pyplot(fig)
 
 
