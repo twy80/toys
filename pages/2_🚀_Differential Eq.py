@@ -4,7 +4,7 @@ import numpy as np
 def rlc_eqn(x, t, *args):
     resistor, inductor, capacitor, input_choice = args
 
-    voltage = 1. if input_choice == "unit step" else np.sin(np.pi*t)
+    voltage = 1. if input_choice == "Unit step" else np.sin(np.pi*t)
     
     return [
         0*x[0] + (1/capacitor)*x[1],
@@ -29,7 +29,7 @@ def run_sim():
     # Input the rank of the compressed image
     input_choice = st.selectbox(
         "$\\hspace{0.25em}\\texttt{Choice of the input voltage? Unit step or Sine?}$",
-        ("unit step", "sine")
+        ("Unit step", "Sine")
     )
 
     resistor = st.slider(
@@ -77,11 +77,11 @@ def run_sim():
     if infodict["message"] != "Integration successful.":
         st.error("Numerical problems arise.", icon="🚨")
 
-    # voltage = len(tspan)*[1.0] if input_choice == "step" else 1.0*np.sin(np.pi*tspan)
+    # voltage = len(tspan)*[1.0] if input_choice == "Unit step" else 1.0*np.sin(np.pi*tspan)
 
     st.write("")
     fig, ax = plt.subplots(2, 1, sharex=True)
-    ax[0].set_title("Time Responses")
+    ax[0].set_title("Time Responses\n")
     ax[0].plot(tspan, xs[:, 0], "g")
     ax[0].set_ylabel("$v_C(t)$")
     ax[1].plot(tspan, xs[:, 1], "b")
