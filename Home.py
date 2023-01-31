@@ -24,17 +24,20 @@ def main():
         """
         ### What this page is for
         
-        * This page is for my students, and currently talks about two types
+        * This page is for my students, and currently talks about three types
           of toy examples.
         
-          + SVD (Singular Value Decomposition) of an image file, which results in
+          - SVD (Singular Value Decomposition) of an image file, which results in
             some sort of image compression
+ 
+          - Simulation of a dynamical system described by a differential
+            equation
         
-          + Use of OpenAI APIs, which enables students to gain a grasp of how things
+          - Use of OpenAI APIs, which enables students to gain a grasp of how things
             like ChatGPT work.
           
-          + This pages is not going to be maintained seriously, but will be
-            updated every now and then.
+        * This pages is not going to be maintained seriously, but will be
+          updated every now and then.
         
         ### How this page is written
           
