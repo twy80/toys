@@ -3,5 +3,6 @@ matplotlib
 scikit-image
 imageio
 openai
+clipboard
 streamlit
 streamlit_chat
