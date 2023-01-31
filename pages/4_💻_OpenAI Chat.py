@@ -48,7 +48,7 @@ def reset_conversation():
 
 def chat_gpt():
     # import os
-    import clipboard
+    # import clipboard
     from streamlit_chat import message
 
     st.write("## :computer: OpenAI Chat")
@@ -114,7 +114,7 @@ def chat_gpt():
             message(st.session_state.ai_resp[i].strip()[4:], key=str(i))
             message(st.session_state.user_inputs[i], is_user=True, key=str(i) + '_user')
 
-    clipboard.copy(f"{st.session_state.prompt}\n")
+    # clipboard.copy(f"{st.session_state.prompt}\n")
     st.session_state.new_conversation = False
 
 
