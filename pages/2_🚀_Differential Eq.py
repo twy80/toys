@@ -32,9 +32,11 @@ def run_sim():
         ("Unit step", "Sine")
     )
 
+    st.write("")
+
     # Setting the R, L & C values
     resistor = st.slider(
-        label="$\\hspace{0.25em}\\texttt{Resistence}$",
+        label="$\\hspace{0.25em}\\texttt{Resistence R}$",
         min_value=0.1,
         max_value=5.0,
         value=1.0,
@@ -42,7 +44,7 @@ def run_sim():
         format="%.1f"
     )
     inductor = st.slider(
-        label="$\\hspace{0.25em}\\texttt{Inductance}$",
+        label="$\\hspace{0.25em}\\texttt{Inductance L}$",
         min_value=0.1,
         max_value=5.0,
         value=1.0,
@@ -50,7 +52,7 @@ def run_sim():
         format="%.1f"
     )
     capacitor = st.slider(
-        label="$\\hspace{0.25em}\\texttt{Capacitance}$",
+        label="$\\hspace{0.25em}\\texttt{Capacitance C}$",
         min_value=0.1,
         max_value=5.0,
         value=1.0,
@@ -80,25 +82,38 @@ def run_sim():
     except Exception as e:
             st.error(f"An error occurred: {e}", icon="🚨")
 
-
     # voltage = len(tspan)*[1.0] if input_choice == "Unit step" else 1.0*np.sin(np.pi*tspan)
 
     st.write("")
-    fig, ax = plt.subplots(1, 2)
+    plot_opt = st.selectbox(
+        "$\\hspace{0.25em}\\texttt{Simulations results}$",
+        ("Phase portrait & Time responses", "Time responses only")
+    )
 
-    ax[0].plot(xs[:, 0], xs[:, 1], "r-")  # path
-    ax[0].plot([xs[0, 0]], "s")
-    ax[0].set_xlabel("$v_C(t)$")
-    ax[0].set_ylabel("$i(t)$")
-    ax[0].set_title("Phase portrait")
-    ax[0].set_box_aspect(1)
+    st.write("")
 
-    ax[1].plot(tspan, xs[:, 0], "g", label="$v_C(t)$")
-    ax[1].plot(tspan, xs[:, 1], "b", label="$i(t)$")
-    ax[1].legend(loc="best")
-    ax[1].set_xlabel("Time")
-    ax[1].set_title("Time responses")
-    ax[1].set_box_aspect(1)
+    if plot_opt == "Phase portrait & Time responses":
+        fig, ax = plt.subplots(1, 2)
+        ax[0].plot(xs[:, 0], xs[:, 1], "r-")  # path
+        ax[0].plot([xs[0, 0]], "s")
+        ax[0].set_xlabel("$v_C(t)$")
+        ax[0].set_ylabel("$i(t)$")
+        ax[0].set_title("Phase portrait")
+        ax[0].set_box_aspect(1)
+        ax[1].plot(tspan, xs[:, 0], "g", label="$v_C(t)$")
+        ax[1].plot(tspan, xs[:, 1], "b", label="$i(t)$")
+        ax[1].legend(loc="best")
+        ax[1].set_xlabel("Time")
+        ax[1].set_title("Time responses")
+        ax[1].set_box_aspect(1)
+    else:
+        fig, ax = plt.subplots(2, 1, sharex=True)
+        ax[0].set_title("Time Responses")
+        ax[0].plot(tspan, xs[:, 0], "g")
+        ax[0].set_ylabel("$v_C(t)$")
+        ax[1].plot(tspan, xs[:, 1], "b")
+        ax[1].set_ylabel("$i(t)$")
+        ax[1].set_xlabel("Time")
 
     st.pyplot(fig)
 

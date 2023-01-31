@@ -22,9 +22,9 @@ def main():
 
     st.write(
         """
-        ### What this page is for
+        ### What this site is for
         
-        * This page is for my students, and currently talks about three types
+        * This site is for my students, and currently talks about three types
           of toy examples.
         
           - SVD (Singular Value Decomposition) of an image file, which results in
@@ -33,26 +33,36 @@ def main():
           - Simulation of a dynamical system described by a differential
             equation
         
-          - Use of OpenAI APIs, which enables students to gain a grasp of how things
-            like ChatGPT work.
-          
-        * This pages is not going to be maintained seriously, but will be
-          updated every now and then.
-        
-        ### How this page is written
+          - Use of OpenAI APIs, which enables students to gain a grasp of how natural
+            language models as in ChatGPT work.
+                  
+        ### How this site is written
           
         * All the pages and scripts are written in python using the streamlit
           framework.
+    
+        #### What TWY does
+    
+        * TWY teaches engineering mathematics, signals and systems,
+          technical writing, etc at Korea University.
+        
+        * Lecture videos (in Korean)
+        
+          - [Linear Algebra](https://youtube.com/playlist?list=PLIzv0-ErbDpwNdtK1OZ7Ew54s3tlXzX4Q)
+          - [Signals and Systems](https://youtube.com/playlist?list=PLIzv0-ErbDpxvwnZ3yFBLKuYP0fhDECov)
+          - [Complex Functions](https://youtube.com/playlist?list=PLIzv0-ErbDpyqRVlmnLsGeC_mLmu-dU-L)
+          - [Mathematical Thinking and Writing](https://youtu.be/eqHsIbwvvrk)
         """
     )
     st.write("")
-    st.write(
-        """
-        TWY teaches engineering mathematics, signals and systems, and
-        technical writing at Korea University.
-        """
-    )
-    st.write("")
+
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        st.info('**[Email](mailto:yoon.tw@gmail.com)**', icon="✉️")
+    with c2:
+        st.info('**[GitHub](https://github.com/twy80)**', icon="💻")
+    with c3:
+        st.info('**[Youtube](https://www.youtube.com/@twy80)**', icon="📺")
 
     # if st.button("Finish"):
     #    os._exit(0)

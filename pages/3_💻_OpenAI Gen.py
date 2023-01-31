@@ -88,8 +88,9 @@ def openai_create_image(description, returning=False):
 def openai_create():
     st.write("## :computer: OpenAI Generator")
     # openai.api_key = os.getenv("OPENAI_API_KEY")
-    openai.api_key = st.text_input("$\\hspace{0.25em}\\texttt{Your OpenAI API Key}$")
-
+    openai.api_key = st.text_input(
+        label="$\\hspace{0.25em}\\texttt{Your OpenAI API Key}$"
+    )
     st.write("(You can obtain an API key from https://beta.openai.com.)")
 
     option = st.selectbox(
