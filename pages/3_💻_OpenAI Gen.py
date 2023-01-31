@@ -86,6 +86,8 @@ def openai_create_image(description, returning=False):
 
 
 def openai_create():
+    # import os
+
     st.write("## :computer: OpenAI Generator")
     # openai.api_key = os.getenv("OPENAI_API_KEY")
     openai.api_key = st.text_input(
