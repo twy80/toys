@@ -150,7 +150,7 @@ def run_svd_image():
         output_rank = input_method(
             label="$\\hspace{0.25em}\\texttt{Rank of the compressed image}$",
             min_value=1,
-            # max_value=st.session_state.rank,
+            # max_value=int(st.session_state.rank),
             max_value=max_rank,
             step=1,
             label_visibility="visible"
