@@ -58,7 +58,7 @@ def chat_gpt():
     #    label="$\\hspace{0.25em}\\texttt{Your OpenAI API Key}$",
     #    on_change=reset_conversation
     # )
-    st.write("(You can obtain an API key from https://beta.openai.com.)")
+    # st.write("(You can obtain an API key from https://beta.openai.com.)")
 
     # start_sequence = "\nAI: "
     restart_sequence = "\nHuman: "
