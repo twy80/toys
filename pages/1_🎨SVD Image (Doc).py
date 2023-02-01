@@ -1,7 +1,7 @@
 def svd_image_doc():
     import streamlit as st
 
-    st.write("## 🎨 Image Compression by SVD (Doc)")
+    st.write("## 🎨 Image Compression by SVD")
 
     st.write(
         """
