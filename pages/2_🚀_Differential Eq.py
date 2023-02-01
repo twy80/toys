@@ -1,4 +1,9 @@
+"""
+Simulation of an RLC circuit by T.-W. Yoon, Jan. 2023
+"""
+
 import numpy as np
+
 
 # Differential equation of an RLC circuit
 def rlc_eqn(x, t, *args):
