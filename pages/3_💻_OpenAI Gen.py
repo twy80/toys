@@ -17,7 +17,7 @@ def openai_create_text(description, temperature=0.6):
                 # model="text-curie-001",
                 prompt=description,
                 temperature=temperature,
-                max_tokens=1024,
+                max_tokens=512,
                 top_p=1,
                 frequency_penalty=0,
                 presence_penalty=0.6,
@@ -41,7 +41,7 @@ def openai_create_code(description, temperature=0):
                 model="text-davinci-003",
                 prompt=description,
                 temperature=temperature,
-                max_tokens=1024,
+                max_tokens=512,
                 top_p=1,
                 frequency_penalty=0,
                 presence_penalty=0,
@@ -89,10 +89,11 @@ def openai_create():
     # import os
 
     st.write("## :computer: OpenAI Generator")
+    openai.api_key = st.secrets["OPENAI_API_KEY"]
     # openai.api_key = os.getenv("OPENAI_API_KEY")
-    openai.api_key = st.text_input(
-        label="$\\hspace{0.25em}\\texttt{Your OpenAI API Key}$"
-    )
+    # openai.api_key = st.text_input(
+    #    label="$\\hspace{0.25em}\\texttt{Your OpenAI API Key}$"
+    # )
     st.write("(You can obtain an API key from https://beta.openai.com.)")
 
     option = st.selectbox(
