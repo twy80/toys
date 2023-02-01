@@ -15,7 +15,7 @@ AI: I am an AI created by OpenAI. How can I help you today?
 """
 
 
-def openai_create(prompt, temperature=0.8, max_token=512, presence_penalty=0.6):
+def openai_create(prompt, temperature=0.8, max_token=200, presence_penalty=0.6):
     try:
         if st.session_state.new_conversation:
             st.session_state.generated_text = ""
@@ -52,11 +52,12 @@ def chat_gpt():
     from streamlit_chat import message
 
     st.write("## :computer: OpenAI Chat")
+    openai.api_key = st.secrets["OPENAI_API_KEY"]
     # openai.api_key = os.getenv("OPENAI_API_KEY")
-    openai.api_key = st.text_input(
-        label="$\\hspace{0.25em}\\texttt{Your OpenAI API Key}$",
-        on_change=reset_conversation
-    )
+    # openai.api_key = st.text_input(
+    #    label="$\\hspace{0.25em}\\texttt{Your OpenAI API Key}$",
+    #    on_change=reset_conversation
+    # )
     st.write("(You can obtain an API key from https://beta.openai.com.)")
 
     # start_sequence = "\nAI: "
