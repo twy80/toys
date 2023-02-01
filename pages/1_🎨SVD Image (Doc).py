@@ -33,10 +33,10 @@ def svd_image_doc():
 
         where $n (\le r)$ is the rank of the compressed matrix $\\tilde{A}$.
 
-        ### Image compression via SVD
+        ### Image compression by SVD
 
         If $A$ contains pixels of an image, $\\tilde{A}$ is a compressed image using a reduced
-        amount of memory. This is what is meant by image compression via SVD. If a color image
+        amount of memory. This is what is meant by image compression using SVD. If a color image
         is given, the SVD can be performed to each of the three channels (e.g. red, green & blue).
         """
     )
