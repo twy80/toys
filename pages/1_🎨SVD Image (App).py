@@ -67,7 +67,7 @@ def svd_plot(output_rank):
     This function calls svd_image() and plot the results.
     """
 
-    with st.spinner("Performing the SVD"):
+    with st.spinner("Performing SVD"):
         output_image = svd_image(
             st.session_state.input_image, output_rank, st.session_state.new_image
         )                           # Compress the image by SVD
