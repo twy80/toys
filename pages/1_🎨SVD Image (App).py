@@ -117,7 +117,7 @@ def run_svd_image():
             image_shape = original_image.shape
 
             # If the image is grayscale, channels = 1
-            # channels = 1 if len(image_shape) == 2 else image_shape[2]
+            # channels = 1 if len(image_shape) == 2 else 3
 
             # rank = 1
             # with st.spinner("Computing the rank of the uploaded image"):
