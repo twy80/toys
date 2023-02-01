@@ -12,6 +12,15 @@ def rlc_eqn(x, t, *args):
     ]
 
 
+def rlc_eqn_jacobian(x, t, *args):
+    resistor, inductor, capacitor, _ = args
+
+    return [
+        [0, 1/capacitor],
+        [-1/inductor, -resistor/inductor]
+    ]
+
+
 def run_sim():
     import matplotlib.pyplot as plt
     from scipy.integrate import odeint
@@ -32,48 +41,60 @@ def run_sim():
         ("Unit step", "Sine")
     )
 
-    st.write("")
-
-    # Setting the R, L & C values
-    resistor = st.slider(
-        label="$\\hspace{0.25em}\\texttt{Resistence R}$",
-        min_value=0.1,
-        max_value=5.0,
-        value=1.0,
-        step=0.1,
-        format="%.1f"
-    )
-    inductor = st.slider(
-        label="$\\hspace{0.25em}\\texttt{Inductance L}$",
-        min_value=0.1,
-        max_value=5.0,
-        value=1.0,
-        step=0.1,
-        format="%.1f"
-    )
-    capacitor = st.slider(
-        label="$\\hspace{0.25em}\\texttt{Capacitance C}$",
-        min_value=0.1,
-        max_value=5.0,
-        value=1.0,
-        step=0.1,
-        format="%.1f"
-    )
-
     tspan = np.linspace(0, 10, 101)
-
-    args = resistor, inductor, capacitor, input_choice
-
-    # Solving the differential equation
-
     x_init = [0, 0]  # Initial state
 
+    st.write("")
+
+    left, right = st.columns([2, 1])
+    with left:
+        # Setting the R, L & C values
+        resistor = st.slider(
+            label="$\\hspace{0.25em}\\texttt{Resistence R}$",
+            min_value=0.1,
+            max_value=5.0,
+            value=1.0,
+            step=0.1,
+            format="%.1f"
+        )
+        inductor = st.slider(
+            label="$\\hspace{0.25em}\\texttt{Inductance L}$",
+            min_value=0.1,
+            max_value=5.0,
+            value=1.0,
+            step=0.1,
+            format="%.1f"
+        )
+        capacitor = st.slider(
+            label="$\\hspace{0.25em}\\texttt{Capacitance C}$",
+            min_value=0.1,
+            max_value=5.0,
+            value=1.0,
+            step=0.1,
+            format="%.1f"
+        )
+        args = resistor, inductor, capacitor, input_choice
+
+    with right:
+        eigenvalues, _ = np.linalg.eig(rlc_eqn_jacobian(x_init, None, *args))
+        st.write(
+            f"""
+            > **Eigenvalues of the system**
+            >
+            > ${eigenvalues[0]:>.2f}$
+            >
+            > ${eigenvalues[1]:>.2f}$
+            """
+        )
+
+    # Solving the differential equation
     try:
         xs, infodict = odeint(
             rlc_eqn,
             x_init,
             tspan,
             args,
+            Dfun=rlc_eqn_jacobian,
             full_output=True,
         )
         if infodict["message"] != "Integration successful.":
