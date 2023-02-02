@@ -44,7 +44,7 @@ def input_matrix(rows, columns, min_value, max_value):
 
 
 def main():
-    st.write("## 📖 SVD & PCA")
+    st.write("## 📖 SVD and PCA")
 
     st.write(
         """
