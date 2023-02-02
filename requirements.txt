@@ -2,6 +2,7 @@ numpy
 scipy
 matplotlib
 scikit-image
+scikit-learn
 imageio
 openai
 streamlit
