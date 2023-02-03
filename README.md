@@ -1,12 +1,15 @@
 # TWY's TOYs
 
-* This is for my students, and currently talks about three types of toy examples.
-        
-  - SVD (Singular Value Decomposition) of an image file, which results in
-    some sort of image compression
-
+* This is for my students, and currently talks about the following
+  toy examples.
+  
   - Simulation of a dynamical system described by a differential
     equation
+
+  - Explanation on SVD (Sinular Value Decomposition) together with a relation
+    with PCA (Principal Component Analsys)
+
+  - SVD of an image file, which results in some sort of image compression
 
   - Use of OpenAI APIs, which enables students to gain a grasp of how natural
     language models as in ChatGPT work.
