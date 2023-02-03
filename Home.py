@@ -13,11 +13,6 @@ def main():
 
     st.write(f"## {page_icon} {page_title}")
 
-    # with st.sidebar:
-    #    st.success("Select a page above.")
-    #    if st.button("Finish"):
-    #        os._exit(0)
-
     st.write(
         """
         ### What this site is for
@@ -28,7 +23,7 @@ def main():
           - Simulation of a dynamical system described by a differential
             equation
         
-          - Explanation on SVD (Sinular Value Decomposition) together with a relation
+          - SVD (Sinular Value Decomposition) together with a relation
             with PCA (Principal Component Analsys)
           
           - SVD of an image file, which results in some sort of image compression
