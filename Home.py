@@ -2,8 +2,6 @@ import streamlit as st
 
 
 def main():
-    import os
-
     page_title = "TWY's Toys"
     page_icon = "📚"
 
@@ -65,9 +63,6 @@ def main():
         st.info('**[GitHub](https://github.com/twy80)**', icon="💻")
     with c3:
         st.info('**[Youtube](https://www.youtube.com/@twy80)**', icon="📺")
-
-    if st.button("Finish"):
-        os._exit(0)
 
 
 if __name__ == "__main__":
