@@ -6,7 +6,7 @@
   - Simulation of a dynamical system described by a differential
     equation
 
-  - Explanation on SVD (Sinular Value Decomposition) together with a relation
+  - SVD (Sinular Value Decomposition) together with a relation
     with PCA (Principal Component Analsys)
 
   - SVD of an image file, which results in some sort of image compression
