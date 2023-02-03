@@ -186,18 +186,8 @@ def svd_pca():
     )
     
     a_mean = a_matrix.mean(axis=0)
-    a_0 = np.tile(a_mean, (rows, 1)) # This is only for printing
+    # a_0 = np.tile(a_mean, (rows, 1)) # This is only for printing
     a_delta = a_matrix - a_mean
-
-    st.write("")
-    c1, c2, c3 = st.columns(3)
-    c1.write("$~~~ A$")
-    c1.write(a_matrix)
-    c2.write("$~~~ A_0$")
-    c2.write(a_0)
-    c3.write("$~~~ A_\Delta$")
-    c3.write(a_delta)
-    st.write("")
 
     # SVD of A matrix
     u_svd, s_svd, vt_svd = np.linalg.svd(a_matrix, full_matrices=False)
@@ -219,17 +209,18 @@ def svd_pca():
     vt_PCA = pca.components_
 
     methods = ("svd", "pca", "PCA")
-    cols = (c1, c2, c3)
+    cols = st.columns(3)
 
+    st.write("")
     for (col, method) in zip(cols, methods):
         col.write(f"**$~~~ ${method}**")
-        col.write("Singular values:")
+        col.write("Singular values")
         col.write(eval("s_" + method).reshape(1, -1))
-        col.write("Right singular vectors $\,v_k$:")
+        col.write("Right singular vectors $\,v_k$'s")
         col.write(eval("vt_" + method).T)
-        col.write("Reduced matrix:")
+        col.write("Reduced matrix $\,A v_k$'s")
         col.write(eval("a_reduced_" + method))
-        col.write("Approxmated matrix:")
+        col.write("Approxmated matrix")
         col.write(eval("a_rec_" + method))
         col.write(
             "Approx. error: $~${:.2e}".format(
