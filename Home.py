@@ -52,6 +52,7 @@ def main():
           - [Signals and Systems](https://youtube.com/playlist?list=PLIzv0-ErbDpxvwnZ3yFBLKuYP0fhDECov)
           - [Complex Functions](https://youtube.com/playlist?list=PLIzv0-ErbDpyqRVlmnLsGeC_mLmu-dU-L)
           - [Mathematical Thinking and Writing](https://youtu.be/eqHsIbwvvrk)
+          - [Science, Technology, and Gender Diversity](https://youtu.be/xUJ9e_hESG8)
         """
     )
     st.write("")
