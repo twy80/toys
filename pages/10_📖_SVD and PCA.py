@@ -43,7 +43,7 @@ def input_matrix(rows, columns, min_value, max_value):
     return matrix
 
 
-def main():
+def svd_pca():
     st.write("## 📖 SVD and PCA")
 
     st.write(
@@ -69,10 +69,11 @@ def main():
         \\end{equation*}
         $$
         
-        Note that the singular values $\sigma_k$'s are the eigenvalues
-        of $A A^T$ and $A^T A$, and the columns of $\,U$ and $\,V$ are orthonormal
-        eigenvectors of $A A^T$ and $A^T A$, respectively.
-        As $Av_k = \sigma_k u_k$, this SVD can also be written as
+        Note that the singular values $\sigma_k$'s are the square roots of
+        the eigenvalues from $A A^T$ and $A^T A$, and the columns of $\,U$
+        and $\,V$ are orthonormal eigenvectors of $A A^T$ and $A^T A$,
+        respectively. As $Av_k = \sigma_k u_k$, this SVD can also be
+        written as
 
         $$
         \\begin{equation}
@@ -262,4 +263,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    svd_pca()
