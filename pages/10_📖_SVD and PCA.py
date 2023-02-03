@@ -237,14 +237,17 @@ def svd_pca():
             )
         )
 
-    st.write(
-        "Do **svd** & **pca** lead to the same results?",
-        np.allclose(a_rec_svd, a_rec_pca)
-    )
-    st.write(
-        "Do **pca** & **PCA** lead to the same results?",
-        np.allclose(a_rec_pca, a_rec_PCA)
-    )
+    left, right = st.columns(2)
+    with left:
+        st.write(
+            "Do **svd** & **pca** lead to the same results?",
+            np.allclose(a_rec_svd, a_rec_pca)
+        )
+    with right:
+        st.write(
+            "Do **pca** & **PCA** lead to the same results?",
+            np.allclose(a_rec_pca, a_rec_PCA)
+        )
     
     st.write("")
     st.write(
