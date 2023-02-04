@@ -98,7 +98,8 @@ def openai_create():
 
     option = st.selectbox(
         "$\\hspace{0.25em}\\texttt{What would you like to generate? Code, Text, or Image?}$",
-        ('Code', 'Text', 'Image')
+        ('Code', 'Text', 'Image'),
+        index=2
     )
 
     code_message = "$\\hspace{0.25em}\\texttt{Give a description in the comment style of your language}$"
