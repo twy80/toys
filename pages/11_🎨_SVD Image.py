@@ -1,6 +1,5 @@
 """
 Image Compression using SVD by T.-W. Yoon, Jan. 2023
-(Streamlit version)
 """
 
 
