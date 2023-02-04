@@ -1,5 +1,5 @@
 """
-Title (by T.-W. Yoon, Jan. 2023)
+SVD and PCA (by T.-W. Yoon, Feb. 2023)
 """
 
 import numpy as np
