@@ -6,7 +6,8 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
-from pydub import AudioSegment
+# from pydub import AudioSegment
+from scipy.io.wavfile import read
 
 
 def note_sound(freq=391.9954, sample_rate=44100, seconds=2):
@@ -77,10 +78,11 @@ def do_fft(time_func, sample_rate=44100, max_freq=1000, time_plot=False, max_tim
     st.pyplot(fig)
 
     
+"""
 def get_audio_data(file):
-    """
+    ...
     Return audio as an np.array, and the sampling rate
-    """
+    ...
 
     filename = file.name
     try:
@@ -97,7 +99,7 @@ def get_audio_data(file):
         return None, None
     
     return sound.get_array_of_samples(), sound.frame_rate
-
+"""
 
 def fourier_transform():
     """
@@ -140,12 +142,13 @@ def fourier_transform():
     st.write("---")
 
     audio_file = st.file_uploader(
-        label="$\\hspace{0.12em}\\texttt{Upload an audio file}$",
-        type=["wav", "mp3", "ogg", "flac"]
+        label="$\\hspace{0.12em}\\texttt{Upload a wav file}$",
+        type=["wav"]
     )
 
     if audio_file is not None:
-        signal, sr = get_audio_data(audio_file)
+        # signal, sr = get_audio_data(audio_file)
+        sr, signal = read(audio_file)
         if len(signal.shape) == 2:
             signal = signal.mean(axis=1)
         st.audio(signal, sample_rate=sr)
