@@ -123,8 +123,9 @@ def fourier_transform():
     )
 
     if audio_file is not None:
-        data, sr = sf.read(audio_file, dtype="float64")
-        signal = data.mean(axis=1)
+        signal, sr = sf.read(audio_file, dtype="float64")
+        if len(signal.shape) == 2:
+            signal = signal.mean(axis=1)
         st.audio(signal, sample_rate=sr)
 
         st.write("")
@@ -142,7 +143,7 @@ def fourier_transform():
 
         max_freq = right.slider(
             label="$\\hspace{0.25em}\\texttt{Frequency range}$",
-            value=float(sr) / 10,
+            value=float(sr) / 20,
             min_value=20.0,
             max_value=20000.0,
             step=1.0,
