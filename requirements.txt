@@ -7,4 +7,5 @@ imageio
 openai
 streamlit
 streamlit_chat
+librosa
 soundfile
