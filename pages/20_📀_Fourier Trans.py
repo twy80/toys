@@ -83,21 +83,20 @@ def do_fft(time_func, sample_rate=44100, max_freq=1000, time_plot=False, max_tim
     # Return audio as an np.array, and the sampling rate
     # """
 
-    # filename = file.name
+    # file_ext = file.name.split(".")[-1]
+
     # try:
-    #    if filename.lower().endswith('.mp3'):
-    #        sound = AudioSegment.from_mp3(file)
-    #    elif filename.lower().endswith('.wav'):
+    #    if file_ext.lower() == "wav":
     #        sound = AudioSegment.from_wav(file)
-    #    elif filename.lower().endswith('.ogg'):
-    #        sound = AudioSegment.from_ogg(file)
-    #    elif filename.endswith('.flac'):
-    #        sound = AudioSegment.from_file(file, "flac")
+    #    elif file_ext.lower() in ["mp3", "ogg", "aac", "wma", "m4a", "flac"]:
+    #        sound = AudioSegment.from_file(file, format=file_ext)
+    #    else:
+    #        st.error(f"Unsupported file format: {file_ext}", icon="🚨")
     # except Exception as e:
     #    st.error(f"An error occurred: {e}", icon="🚨")
     #    return None, None
     
-    # return sound.get_array_of_samples(), sound.frame_rate
+    # return np.array(sound.get_array_of_samples()), sound.frame_rate
 
 
 def fourier_transform():
@@ -142,6 +141,7 @@ def fourier_transform():
 
     audio_file = st.file_uploader(
         label="$\\hspace{0.12em}\\texttt{Upload an audio file}$",
+        # type=["mp3", "ogg", "aac", "wma", "m4a", "flac"]
         type=["wav"]
     )
 
