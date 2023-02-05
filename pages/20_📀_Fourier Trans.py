@@ -83,18 +83,18 @@ def get_audio_data(file):
     """
 
     filename = file.name
-	try:
-		if filename.lower().endswith('.mp3'):
-			sound = AudioSegment.from_mp3(filename)
-		elif filename.lower().endswith('.wav'):
-			sound = AudioSegment.from_wav(filename)
-		elif filename.lower().endswith('.ogg'):
-			sound = AudioSegment.from_ogg(filename)
-		elif filename.endswith('.flac'):
-			sound = AudioSegment.from_file(filename, "flac")
-	except:
+    try:
+	if filename.lower().endswith('.mp3'):
+	    sound = AudioSegment.from_mp3(filename)
+	elif filename.lower().endswith('.wav'):
+	    sound = AudioSegment.from_wav(filename)
+	elif filename.lower().endswith('.ogg'):
+	    sound = AudioSegment.from_ogg(filename)
+	elif filename.endswith('.flac'):
+	    sound = AudioSegment.from_file(filename, "flac")
+    except:
         st.error(f"An error occurred: {e}", icon="🚨")
-		return None, None
+	return None, None
     
     return sound.get_array_of_samples(), sound.frame_rate
 
