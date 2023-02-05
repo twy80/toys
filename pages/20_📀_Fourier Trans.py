@@ -97,7 +97,7 @@ def do_fft(time_func, sample_rate=44100, max_freq=1000, time_plot=False, max_tim
     #    st.error(f"An error occurred: {e}", icon="🚨")
     #    return None, None
     
-    #return sound.get_array_of_samples(), sound.frame_rate
+    # return sound.get_array_of_samples(), sound.frame_rate
 
 
 def fourier_transform():
