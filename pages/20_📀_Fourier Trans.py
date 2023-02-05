@@ -141,7 +141,7 @@ def fourier_transform():
     st.write("---")
 
     audio_file = st.file_uploader(
-        label="$\\hspace{0.12em}\\texttt{Upload a wav file}$",
+        label="$\\hspace{0.12em}\\texttt{Upload an audio file}$",
         type=["wav"]
     )
 
