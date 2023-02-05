@@ -93,7 +93,7 @@ def do_fft(time_func, sample_rate=44100, max_freq=1000, time_plot=False, max_tim
     #        sound = AudioSegment.from_ogg(filename)
     #    elif filename.endswith('.flac'):
     #        sound = AudioSegment.from_file(filename, "flac")
-    # except:
+    # except Exception as e:
     #    st.error(f"An error occurred: {e}", icon="🚨")
     #    return None, None
     
