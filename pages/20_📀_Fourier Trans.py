@@ -86,13 +86,13 @@ def do_fft(time_func, sample_rate=44100, max_freq=1000, time_plot=False, max_tim
     # filename = file.name
     # try:
     #    if filename.lower().endswith('.mp3'):
-    #        sound = AudioSegment.from_mp3(filename)
+    #        sound = AudioSegment.from_mp3(file)
     #    elif filename.lower().endswith('.wav'):
-    #        sound = AudioSegment.from_wav(filename)
+    #        sound = AudioSegment.from_wav(file)
     #    elif filename.lower().endswith('.ogg'):
-    #        sound = AudioSegment.from_ogg(filename)
+    #        sound = AudioSegment.from_ogg(file)
     #    elif filename.endswith('.flac'):
-    #        sound = AudioSegment.from_file(filename, "flac")
+    #        sound = AudioSegment.from_file(file, "flac")
     # except Exception as e:
     #    st.error(f"An error occurred: {e}", icon="🚨")
     #    return None, None
