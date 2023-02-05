@@ -6,7 +6,8 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
-import soundfile as sf
+import librosa
+# import soundfile as sf
 
 
 def note_sound(freq=391.9954, sample_rate=44100, seconds=2):
@@ -123,9 +124,10 @@ def fourier_transform():
     )
 
     if audio_file is not None:
-        signal, sr = sf.read(audio_file, dtype="float64")
-        if len(signal.shape) == 2:
-            signal = signal.mean(axis=1)
+        signal, sr = librosa.load(audio_file, mono=True)
+        # signal, sr = sf.read(audio_file, dtype="float64")
+        # if len(signal.shape) == 2:
+        #    signal = signal.mean(axis=1)
         st.audio(signal, sample_rate=sr)
 
         st.write("")
