@@ -7,4 +7,3 @@ imageio
 openai
 streamlit
 streamlit_chat
-pydub
