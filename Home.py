@@ -27,9 +27,12 @@ def main():
             with PCA (Principal Component Analsys)
           
           - SVD of an image file, which results in some sort of image compression
+          
+          - Fourier transform (of sound waves), which is an essential concept
+            in signals and systems
  
-          - Use of OpenAI APIs, which enables students to gain a grasp of how natural
-            language models as in ChatGPT work.
+          - Use of OpenAI APIs, which familiarize students with natural
+            language models as in ChatGPT.
                   
         ### How this site is written
           
