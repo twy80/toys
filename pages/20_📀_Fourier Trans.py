@@ -141,7 +141,7 @@ def fourier_transform():
 
     audio_file = st.file_uploader(
         label="$\\hspace{0.12em}\\texttt{Upload an audio file}$",
-        # type=["mp3", "ogg", "aac", "wma", "m4a", "flac"]
+        # type=["wav", "mp3", "ogg", "aac", "wma", "m4a", "flac"]
         type=["wav"]
     )
 
