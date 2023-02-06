@@ -157,25 +157,25 @@ def fourier_transform():
 
         left, _, right = st.columns([5, 1, 5])
 
+        max_value_time, max_value_freq = len(signal) / sr, 5000.
         max_time = left.slider(
             label="$\\hspace{0.25em}\\texttt{Time range}$",
-            value = 0.05,
             min_value=0.0,
-            max_value=len(signal) / sr,
+            max_value=max_value_time,
+            value=max_value_time,
             step=0.001,
             label_visibility="visible"
         )
-
         max_freq = right.slider(
             label="$\\hspace{0.25em}\\texttt{Frequency range}$",
-            value=float(sr) / 20,
-            min_value=20.0,
-            max_value=20000.0,
+            min_value=0.0,
+            max_value=max_value_freq,
+            value=max_value_freq,
             step=1.0,
             label_visibility="visible"
         )
 
-        do_fft(signal, max_freq=max_freq, time_plot=True, max_time=max_time)
+        do_fft(signal, sample_rate=sr, max_freq=max_freq, time_plot=True, max_time=max_time)
 
 
 if __name__ == "__main__":
