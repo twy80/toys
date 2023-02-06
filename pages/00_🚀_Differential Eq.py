@@ -35,7 +35,7 @@ def run_sim():
 
     st.write("")
     st.image(
-        "images/RLC_circuit.jpg",
+        "files/RLC_circuit.jpg",
         caption="Image from http://goo.gl/r7DZBQ"
     )
     st.write("")

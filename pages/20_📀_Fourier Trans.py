@@ -97,7 +97,43 @@ def do_fft(time_func, sample_rate=44100, max_freq=1000, time_plot=False, max_tim
     #    st.error(f"An error occurred: {e}", icon="🚨")
     #    return None, None
     
+    # sound = sound.set_channels(1)
     # return np.array(sound.get_array_of_samples()), sound.frame_rate
+
+
+def show_results(signal, sr):
+    """
+    Show the results of fourier transforms
+
+    Args:
+        signal (np.array): audio signal of a single channel
+        sr (float): sampling rate
+    """
+
+    left, _, right = st.columns([5, 1, 5])
+
+    max_value_time, max_value_freq = len(signal) / sr, 5000.
+    max_time = left.slider(
+        label="$\\hspace{0.25em}\\texttt{Time range}$",
+        min_value=0.0,
+        max_value=max_value_time,
+        value=max_value_time,
+        step=0.001,
+        label_visibility="visible",
+        key=st.session_state.slider_key
+    )
+    max_freq = right.slider(
+        label="$\\hspace{0.25em}\\texttt{Frequency range}$",
+        min_value=0.0,
+        max_value=max_value_freq,
+        value=max_value_freq,
+        step=1.0,
+        label_visibility="visible",
+        key=st.session_state.slider_key+1
+    )
+    st.session_state.slider_key += 2
+
+    do_fft(signal, sample_rate=sr, max_freq=max_freq, time_plot=True, max_time=max_time)
 
 
 def fourier_transform():
@@ -105,8 +141,11 @@ def fourier_transform():
     This app inputs sounds and performs their fourier transforms.
     """
 
-    st.write("## 📀 Fourier Transform of Sound")
+    st.write("## 📀 Fourier Transform of Sound Waves")
     st.write("")
+
+    if 'slider_key' not in st.session_state:
+        st.session_state["slider_key"] = 0
 
     # Frequencies of notes
     note_freq = {
@@ -115,16 +154,18 @@ def fourier_transform():
     }
 
     # Choose the note to consider
+    st.write("##### Select a note")
     note = st.radio(
-        label="$\\hspace{0.12em}\\texttt{Select notes}$",
+        label="$\\hspace{0.12em}\\texttt{Select a note}$",
         options=('C', 'D', 'E', 'F', 'G', 'A', 'B', 'C+E+G', 'C+F+A'),
         horizontal=True,
-        index=4
+        index=4,
+        label_visibility="collapsed"
     )
 
+    # Compose a function with the selected note
     sample_rate = 44_100  # 44100 samples per second
 
-    # Compose a function with the selected note
     if len(note) == 1:
         time_func = note_sound(freq=note_freq[note], seconds=2)
     else:
@@ -139,11 +180,24 @@ def fourier_transform():
     do_fft(time_func, time_plot=True, max_time=0.02)
 
     st.write("---")
+    st.write("##### Sample sound wave")
+    st.write("")
+
+    sr, signal = read("files/example.wav")
+    signal = signal.mean(axis=1)
+    st.audio(signal, sample_rate=sr)
+
+    st.write("")
+    show_results(signal, sr)
+
+    st.write("---")
+    st.write("##### Upload an audio file")
 
     audio_file = st.file_uploader(
         label="$\\hspace{0.12em}\\texttt{Upload an audio file}$",
-        # type=["wav", "mp3", "ogg", "aac", "wma", "m4a", "flac"]
-        type=["wav"]
+        # type=["wav", "mp3", "ogg", "aac", "wma", "m4a", "flac"],
+        type=["wav"],
+        label_visibility="collapsed"
     )
 
     if audio_file is not None:
@@ -154,28 +208,7 @@ def fourier_transform():
         st.audio(signal, sample_rate=sr)
 
         st.write("")
-
-        left, _, right = st.columns([5, 1, 5])
-
-        max_value_time, max_value_freq = len(signal) / sr, 5000.
-        max_time = left.slider(
-            label="$\\hspace{0.25em}\\texttt{Time range}$",
-            min_value=0.0,
-            max_value=max_value_time,
-            value=max_value_time,
-            step=0.001,
-            label_visibility="visible"
-        )
-        max_freq = right.slider(
-            label="$\\hspace{0.25em}\\texttt{Frequency range}$",
-            min_value=0.0,
-            max_value=max_value_freq,
-            value=max_value_freq,
-            step=1.0,
-            label_visibility="visible"
-        )
-
-        do_fft(signal, sample_rate=sr, max_freq=max_freq, time_plot=True, max_time=max_time)
+        show_results(signal, sr)
 
 
 if __name__ == "__main__":
