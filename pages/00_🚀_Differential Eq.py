@@ -117,6 +117,7 @@ def run_sim():
     )
 
     st.write("")
+    plt.rcParams.update({'font.size': 6})
 
     if plot_opt == "Phase portrait & Time responses":
         fig, ax = plt.subplots(1, 2)

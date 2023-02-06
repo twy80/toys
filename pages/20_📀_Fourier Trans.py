@@ -39,6 +39,7 @@ def do_fft(time_func, sample_rate=44100, max_freq=1000, time_plot=False, max_tim
         max_time (float): maximum time to be shown when time_plot = True
     """
 
+    plt.rcParams.update({'font.size': 6})
     time_len = len(time_func)
 
     # Perform FFT
