@@ -101,7 +101,7 @@ def do_fft(time_func, sample_rate=44100, max_freq=1000, time_plot=False, max_tim
     # return np.array(sound.get_array_of_samples()), sound.frame_rate
 
 
-def show_results(signal, sr):
+def show_results(signal, sr, plot_key):
     """
     Show the results of fourier transforms
 
@@ -120,7 +120,7 @@ def show_results(signal, sr):
         value=max_value_time,
         step=0.001,
         label_visibility="visible",
-        key=st.session_state.slider_key
+        key=plot_key + "_time"
     )
     max_freq = right.slider(
         label="$\\hspace{0.25em}\\texttt{Frequency range}$",
@@ -129,9 +129,8 @@ def show_results(signal, sr):
         value=max_value_freq,
         step=1.0,
         label_visibility="visible",
-        key=st.session_state.slider_key+1
+        key=plot_key + "_freq"
     )
-    st.session_state.slider_key += 2
 
     do_fft(signal, sample_rate=sr, max_freq=max_freq, time_plot=True, max_time=max_time)
 
@@ -143,9 +142,6 @@ def fourier_transform():
 
     st.write("## 📀 Fourier Transform of Sound Waves")
     st.write("")
-
-    if 'slider_key' not in st.session_state:
-        st.session_state["slider_key"] = 0
 
     # Frequencies of notes
     note_freq = {
@@ -188,7 +184,7 @@ def fourier_transform():
     st.audio(signal, sample_rate=sr)
 
     st.write("")
-    show_results(signal, sr)
+    show_results(signal, sr, plot_key="example")
 
     st.write("---")
     st.write("##### Upload an audio file")
@@ -208,7 +204,7 @@ def fourier_transform():
         st.audio(signal, sample_rate=sr)
 
         st.write("")
-        show_results(signal, sr)
+        show_results(signal, sr, plot_key="upload")
 
 
 if __name__ == "__main__":
