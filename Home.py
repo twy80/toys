@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def main():
-    page_title = "TWY's Toys"
+    page_title = "TWY's Playground"
     page_icon = "📚"
 
     st.set_page_config(
