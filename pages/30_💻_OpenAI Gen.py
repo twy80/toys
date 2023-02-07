@@ -12,17 +12,18 @@ def openai_create_text(description, temperature=0.6):
         output_message = ""
     else:
         try:
-            response = openai.Completion.create(
-                model="text-davinci-003",
-                # model="text-curie-001",
-                prompt=description,
-                temperature=temperature,
-                max_tokens=512,
-                top_p=1,
-                frequency_penalty=0,
-                presence_penalty=0.6,
-                # stop=["\n"]
-            )
+            with st.spinner("AI is generating..."):
+                response = openai.Completion.create(
+                    model="text-davinci-003",
+                    # model="text-curie-001",
+                    prompt=description,
+                    temperature=temperature,
+                    max_tokens=512,
+                    top_p=1,
+                    frequency_penalty=0,
+                    presence_penalty=0.6,
+                    # stop=["\n"]
+                )
             output_message = response.choices[0].text
             # clipboard.copy(output_message)
         except openai.error.OpenAIError as e:
@@ -36,16 +37,17 @@ def openai_create_code(description, temperature=0):
         output_code = ""
     else:
         try:
-            response = openai.Completion.create(
-                # model="code-davinci-002",
-                model="text-davinci-003",
-                prompt=description,
-                temperature=temperature,
-                max_tokens=512,
-                top_p=1,
-                frequency_penalty=0,
-                presence_penalty=0,
-                # stop=["\n"]
+            with st.spinner("AI is generating..."):
+                response = openai.Completion.create(
+                    model="code-davinci-002",
+                    # model="text-davinci-003",
+                    prompt=description,
+                    temperature=temperature,
+                    max_tokens=512,
+                    top_p=1,
+                    frequency_penalty=0,
+                    presence_penalty=0,
+                    # stop=["\n"]
             )
             output_code = response.choices[0].text
             # clipboard.copy(output_code)
@@ -60,11 +62,12 @@ def openai_create_image(description, returning=False):
         output_message = ""
     else:
         try:
-            response = openai.Image.create(
-                prompt=description,
-                n=1,
-                size="1024x1024"
-            )
+            with st.spinner("AI is generating..."):
+                response = openai.Image.create(
+                    prompt=description,
+                    n=1,
+                    size="1024x1024"
+                )
             image_url = response['data'][0]['url']
             output_message = "Success"
         except openai.error.OpenAIError as e:
