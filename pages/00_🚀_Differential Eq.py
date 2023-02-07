@@ -31,9 +31,21 @@ def run_sim():
     from scipy.integrate import odeint
     import streamlit as st
 
-    st.write("## 🚀 Simulation of a Circuit")
+    st.write("## 🚀 Differential Equations")
 
     st.write("")
+    st.write(
+        """
+        Differential equations form a mathematical language, which can precisely
+        describe objects in the world that are varying over time. Being able to
+        deal with differential equations is therefore an essential element for
+        science and technology. Here is a simple example of simulating an RLC
+        electric circuit expressed as a 2nd order differential equation.
+        """
+    )
+    st.write("")
+    st.write("##### RLC circuit")
+
     st.image(
         "files/RLC_circuit.jpg",
         caption="Image from http://goo.gl/r7DZBQ"
