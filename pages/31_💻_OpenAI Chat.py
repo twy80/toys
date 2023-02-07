@@ -15,11 +15,14 @@ The following is a conversation with an AI assistant. The assistant is helpful, 
 """
 
 
-def openai_create(human_enq, temperature=0.8, max_token=200, presence_penalty=0.6):
+def openai_create(restart_sequence, user_prompt, temperature=0.8, max_token=200, presence_penalty=0.6):
+    if user_prompt == "":
+        return None
+
+    human_enq = restart_sequence + user_prompt
     try:
         if st.session_state.new_conversation:
-            st.session_state.generated_text = ""
-            human_enq = ""
+            return None
         else:
             with st.spinner("AI is thinking..."):
                 response = openai.Completion.create(
@@ -33,24 +36,31 @@ def openai_create(human_enq, temperature=0.8, max_token=200, presence_penalty=0.
                     presence_penalty=presence_penalty,
                     stop=[" **Human:**", " **AI:**"]
                 )
-            st.session_state.generated_text = response.choices[0].text+"\n"
+            generated_text = response.choices[0].text+"\n"
     except openai.error.OpenAIError as e:
-        st.session_state.generated_text = ""
-        human_enq = ""
+        generated_text = None
         st.error(f"An error occurred: {e}", icon="🚨")
 
-    st.session_state.prompt += human_enq + st.session_state.generated_text
+    if generated_text:
+        st.session_state.prompt += human_enq + generated_text
+        st.session_state.generated_text = generated_text
+
+    return None
 
 
 def reset_conversation():
+    # import clipboard
+    # clipboard.copy(f"{st.session_state.prompt}\n")
+
     st.session_state.new_conversation = True
+    st.session_state.generated_text = None
+    st.session_state.prompt = ""
     st.session_state.human_enq = []
     st.session_state.ai_resp = []
 
 
 def chat_gpt():
     # import os
-    # import clipboard
     # from streamlit_chat import message
 
     st.write("## :computer: OpenAI Chat")
@@ -65,8 +75,11 @@ def chat_gpt():
     # start_sequence = "\n**AI:** "
     restart_sequence = "\n**Human:** "
 
-    if "new_conversation" not in st.session_state:
-        st.session_state.new_conversation = True
+    if "generated_text" not in st.session_state:
+        st.session_state.generated_text = None
+
+    if "prompt" not in st.session_state:
+        st.session_state.prompt = ""
 
     if "human_enq" not in st.session_state:
         st.session_state.human_enq = []
@@ -74,17 +87,11 @@ def chat_gpt():
     if "ai_resp" not in st.session_state:
         st.session_state.ai_resp = []
 
-    if st.session_state.new_conversation:
-        st.session_state.prompt = ""
-
     st.write("#### Conversation with AI")
 
-    if len(st.session_state.ai_resp) > 0:
-        for i in range(len(st.session_state.ai_resp)):
-            st.write(st.session_state.human_enq[i])
-            st.write(st.session_state.ai_resp[i])
-    # else:
-    #    st.write(initial_prompt)
+    for (human, ai) in zip(st.session_state.human_enq, st.session_state.ai_resp):
+        st.write(human)
+        st.write(ai)
 
     # Get the code description from the user
     user_input = st.text_area(
@@ -93,29 +100,27 @@ def chat_gpt():
         label_visibility="visible"
     )
 
-    human_enq = restart_sequence + user_input.strip()
-    prompt = st.session_state.prompt + human_enq
+    user_input_stripped = user_input.strip()
 
     left, right = st.columns(2) # To show the results below the button
     left.button(
         label="Send",
-        on_click=openai_create(human_enq),
+        on_click=openai_create(restart_sequence, user_input_stripped),
     )
     right.button(
         label="Reset",
         on_click=reset_conversation
     )
 
-    if not st.session_state.new_conversation and st.session_state.generated_text:
+    if st.session_state.generated_text and user_input_stripped != "":
         st.write(st.session_state.generated_text)
-        st.session_state.human_enq.append(human_enq)
+        st.session_state.human_enq.append(restart_sequence + user_input_stripped)
         st.session_state.ai_resp.append(st.session_state.generated_text)
 
         # for i in range(len(st.session_state.ai_resp)-1, -1, -1):
         #    message(st.session_state.ai_resp[i].strip(), key=str(i))
         #    message(st.session_state.human_enq[i], is_user=True, key=str(i) + '_user')
 
-    # clipboard.copy(f"{st.session_state.prompt}\n")
     st.session_state.new_conversation = False
 
 
