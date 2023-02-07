@@ -39,7 +39,7 @@ def openai_create_code(description, temperature=0):
         try:
             with st.spinner("AI is generating..."):
                 response = openai.Completion.create(
-                    model="code-davinci-002",
+                    model="code-davinci-003",
                     # model="text-davinci-003",
                     prompt=description,
                     temperature=temperature,
