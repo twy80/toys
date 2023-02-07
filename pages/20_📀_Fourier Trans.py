@@ -146,8 +146,8 @@ def fourier_transform():
     st.write(
         """
         Fourier transformation establishes a one-to-one correspondence
-        between a function of time (or space) and a function of frequency
-        that contains the same information. Fourier transforms are obtained
+        between a function of time (or space) and a function of frequency,
+        which contain the same information. Fourier transforms are obtained
         by decomposing functions of time (or space) into frequency
         components. Here is a simple example of showing frequency
         components of sound waves using Fourier transformation.
