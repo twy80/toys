@@ -100,13 +100,26 @@ def run_svd_image():
 
     st.write("## 🎨 Image Compression by SVD")
 
+    st.write("")
+    st.write(
+        """
+        As discussed in [📖 SVD and PCA](./SVD_and_PCA), SVD
+        (Singular Value Decomposition) can be used to approximate a matrix
+        by reducing the rank. An image is given by a set of matrices, and
+        therefore a lower rank image can be obtained by performing SVD.
+        This leads to some of image compression.
+        """
+    )
+    st.write("")
+
     # Upload an image file
+    st.write("##### Upload an image")
     image_file = st.file_uploader(
         label="$\\hspace{0.25em}\\texttt{Upload an image}$",
         type=["jpg", "jpeg", "png", "bmp"],
         accept_multiple_files=False,
         on_change=reset_new_image,
-        label_visibility="visible"
+        label_visibility="collapsed"
     )
 
     if image_file is not None:
