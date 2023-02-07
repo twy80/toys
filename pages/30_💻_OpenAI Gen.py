@@ -48,7 +48,7 @@ def openai_create_code(description, temperature=0):
                     frequency_penalty=0,
                     presence_penalty=0,
                     # stop=["\n"]
-            )
+                )
             output_code = response.choices[0].text
             # clipboard.copy(output_code)
         except openai.error.OpenAIError as e:
