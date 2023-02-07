@@ -105,7 +105,7 @@ def run_svd_image():
         """
         As discussed in [📖 SVD and PCA](./SVD_and_PCA), SVD
         (Singular Value Decomposition) can be used to approximate a matrix
-        by reducing the rank. An image is given by a set of matrices, and
+        by reducing the rank. An image is a set of matrices, and
         therefore a lower rank image can be obtained by performing SVD.
         This leads to some of image compression.
         """
