@@ -126,13 +126,11 @@ def run_svd_image():
         label_visibility="visible"
     )
 
-    if "pre_output_rank" not in st.session_state:
-        st.session_state.pre_output_rank = 1
-
     if image_file is not None:
         if st.session_state.new_image:
             # Process the uploaded image file
             image = Image.open(image_file)
+            st.session_state.pre_output_rank = 1
 
             if max(image.width, image.height) > 1024:
                 if image.width > image.height:
