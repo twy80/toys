@@ -3,6 +3,6 @@ scipy
 matplotlib
 scikit-image
 scikit-learn
-imageio
+pillow
 openai
 streamlit
