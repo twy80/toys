@@ -15,28 +15,25 @@ The following is a conversation with an AI assistant. The assistant is helpful, 
 """
 
 
-def openai_create(restart_sequence, user_prompt, temperature=0.8, max_token=200, presence_penalty=0.6):
-    if user_prompt == "":
+def openai_create(restart_sequence, user_prompt, temperature=0.8, max_token=200):
+    if user_prompt == "" or st.session_state.new_conversation:
         return None
 
     human_enq = restart_sequence + user_prompt
     try:
-        if st.session_state.new_conversation:
-            return None
-        else:
-            with st.spinner("AI is thinking..."):
-                response = openai.Completion.create(
-                    model="text-davinci-003",
-                    # model="text-curie-001",
-                    prompt=initial_prompt + st.session_state.prompt + human_enq,
-                    temperature=temperature,
-                    max_tokens=max_token,
-                    top_p=1,
-                    frequency_penalty=0,
-                    presence_penalty=presence_penalty,
-                    stop=[" **Human:**", " **AI:**"]
-                )
-            generated_text = response.choices[0].text+"\n"
+        with st.spinner("AI is thinking..."):
+            response = openai.Completion.create(
+                model="text-davinci-003",
+                # model="text-curie-001",
+                prompt=initial_prompt + st.session_state.prompt + human_enq,
+                temperature=temperature,
+                max_tokens=max_token,
+                top_p=1,
+                frequency_penalty=0,
+                presence_penalty=0.6,
+                stop=[" **Human:**", " **AI:**"]
+            )
+        generated_text = response.choices[0].text+"\n"
     except openai.error.OpenAIError as e:
         generated_text = None
         st.error(f"An error occurred: {e}", icon="🚨")
