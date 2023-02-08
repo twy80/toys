@@ -15,7 +15,7 @@ The following is a conversation with an AI assistant. The assistant is helpful, 
 """
 
 
-def openai_create(restart_sequence, user_prompt, temperature=0.8, max_token=200):
+def openai_create(restart_sequence, user_prompt, temperature=0.8, max_token=512):
     if user_prompt == "" or st.session_state.new_conversation:
         return None
 
