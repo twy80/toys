@@ -82,7 +82,7 @@ def svd_plot(output_rank):
         )
         right.image(
             image=st.session_state.input_image,
-            caption=f"Original {st.session_state.image_dim[0]}x{st.session_state.image_dim[1]} image",
+            caption=f"Original rank-{st.session_state.rank} image",
             use_column_width=True
         )
 
@@ -96,7 +96,7 @@ def run_svd_image():
     This is the main function calling svd_plot().
     """
 
-    import imageio.v3 as iio
+    from PIL import Image
 
     st.write("## 🎨 Image Compression by SVD")
 
@@ -115,55 +115,66 @@ def run_svd_image():
     # Upload an image file
     st.write("##### Upload an image")
     image_file = st.file_uploader(
-        label="$\\hspace{0.25em}\\texttt{Upload an image}$",
+        label="High resolution images will be resized.",
         type=["jpg", "jpeg", "png", "bmp"],
         accept_multiple_files=False,
         on_change=reset_new_image,
-        label_visibility="collapsed"
+        label_visibility="visible"
     )
 
     if image_file is not None:
         if st.session_state.new_image:
             # Process the uploaded image file
-            original_image = iio.imread(image_file)
+            image = Image.open(image_file)
+
+            if max(image.width, image.height) > 1024:
+                if image.width > image.height:
+                    new_width, new_height = 1024, int(image.height * 1024 / image.width)
+                else:
+                    new_width, new_height = int(image.width * 1024 / image.height), 1024
+
+                image = image.resize((new_width, new_height))
+
+            original_image = np.array(image)
             image_shape = original_image.shape
 
             # If the image is grayscale, channels = 1
-            # channels = 1 if len(image_shape) == 2 else 3
+            channels = 1 if len(image_shape) == 2 else 3
 
-            # rank = 1
-            # with st.spinner("Computing the rank of the uploaded image"):
-            #    for i in range(channels):  # Compute the rank of each channel
-            #        if channels == 1:
-            #            rank = np.linalg.matrix_rank(original_image)
-            #        else:
-            #            rank = max(rank, np.linalg.matrix_rank(original_image[:, :, i]))
+            rank = 1
+            with st.spinner("Computing the rank of the uploaded image"):
+                for i in range(channels):  # Compute the rank of each channel
+                    if channels == 1:
+                        rank = np.linalg.matrix_rank(original_image)
+                    else:
+                        rank = max(rank, np.linalg.matrix_rank(original_image[:, :, i]))
 
             # Store the image together with the rank and dimension
             st.session_state.input_image = original_image
-            st.session_state.image_dim = image_shape[:2]
-            # st.session_state.rank = rank
-
-        no_rows, no_columns = st.session_state.image_dim
-        max_rank = min(no_rows, no_columns)
+            st.session_state.image_dim = image.size
+            st.session_state.rank = rank
 
         # Write the information of the uploaded image
         st.write(
-            "Uploaded image: ", no_rows, "x", no_columns
+            "Uploaded (resized) image:",
+            st.session_state.image_dim[0], "x", st.session_state.image_dim[1],
+            "pixels of rank", st.session_state.rank,            
         )
+        st.write("---")
 
         # Input the rank of the compressed image
-        option = st.selectbox(
-            "How would you set the rank of compressed images? Slider or Textbox?",
-            ("Textbox", "Slider")
+        left, _, right = st.columns([5, 1, 5])
+        option = left.radio(
+            "$\\hspace{0.07em}\\texttt{Seting the rank of compressed images?}$",
+            ("Slider", "Textbox"),
+            horizontal=True
         )
 
-        input_method = st.slider if option == "Slider" else st.number_input
+        input_method = right.slider if option == "Slider" else right.number_input
         output_rank = input_method(
-            label="$\\hspace{0.25em}\\texttt{Rank of the compressed image}$",
+            label="$\\hspace{0.07em}\\texttt{Rank of the compressed image}$",
             min_value=1,
-            # max_value=int(st.session_state.rank),
-            max_value=max_rank,
+            max_value=int(st.session_state.rank),
             step=1,
             label_visibility="visible"
         )
