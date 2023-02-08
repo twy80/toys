@@ -84,6 +84,9 @@ def chat_gpt():
     if "ai_resp" not in st.session_state:
         st.session_state.ai_resp = []
 
+    if "new_conversation" not in st.session_state:
+        st.session_state.new_conversation = True
+
     st.write("#### Conversation with AI")
 
     for (human, ai) in zip(st.session_state.human_enq, st.session_state.ai_resp):
