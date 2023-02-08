@@ -87,6 +87,10 @@ def svd_plot(output_rank):
         )
 
 
+def reset_initial_rank():
+    st.session_state.pre_output_rank = st.session_state.output_rank
+
+
 def run_svd_image():
     """
     This function selects an image file and computes its rank.
@@ -121,6 +125,9 @@ def run_svd_image():
         on_change=reset_new_image,
         label_visibility="visible"
     )
+
+    if "pre_output_rank" not in st.session_state:
+        st.session_state.pre_output_rank = 1
 
     if image_file is not None:
         if st.session_state.new_image:
@@ -167,14 +174,16 @@ def run_svd_image():
         option = left.radio(
             "$\\hspace{0.07em}\\texttt{How to set the rank}$",
             ("Slider", "Textbox"),
-            horizontal=True
+            horizontal=True,
+            on_change=reset_initial_rank
         )
 
         input_method = right.slider if option == "Slider" else right.number_input
-        output_rank = input_method(
+        st.session_state.output_rank = input_method(
             label="$\\hspace{0.07em}\\texttt{Rank of the compressed image}$",
             min_value=1,
             max_value=int(st.session_state.rank),
+            value=st.session_state.pre_output_rank,
             step=1,
             label_visibility="visible"
         )
@@ -182,7 +191,7 @@ def run_svd_image():
         # Compress the image by SVD
         st.button(
             "Perform SVD",
-            on_click=svd_plot(output_rank),
+            on_click=svd_plot(st.session_state.output_rank),
             type="primary"
         )
 
