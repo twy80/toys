@@ -165,7 +165,7 @@ def run_svd_image():
         # Input the rank of the compressed image
         left, _, right = st.columns([5, 1, 5])
         option = left.radio(
-            "$\\hspace{0.07em}\\texttt{Seting the rank of compressed images?}$",
+            "$\\hspace{0.07em}\\texttt{How to set the rank}$",
             ("Slider", "Textbox"),
             horizontal=True
         )
