@@ -4,6 +4,7 @@ Chatting with GPT using openai API (by T.-W. Yoon, Jan. 2023)
 
 import openai
 import streamlit as st
+# import clipboard
 
 
 initial_prompt = """
@@ -46,7 +47,6 @@ def openai_create(restart_sequence, user_prompt, temperature=0.8, max_token=512)
 
 
 def reset_conversation():
-    # import clipboard
     # clipboard.copy(f"{st.session_state.prompt}\n")
 
     st.session_state.new_conversation = True
@@ -116,6 +116,7 @@ def chat_gpt():
         st.write(st.session_state.generated_text)
         st.session_state.human_enq.append(restart_sequence + user_input_stripped)
         st.session_state.ai_resp.append(st.session_state.generated_text)
+        # clipboard.copy(f"{st.session_state.generated_text}")
 
         # for i in range(len(st.session_state.ai_resp)-1, -1, -1):
         #    message(st.session_state.ai_resp[i].strip(), key=str(i))
