@@ -187,11 +187,7 @@ def run_svd_image():
         )
 
         # Compress the image by SVD
-        st.button(
-            "Perform SVD",
-            on_click=svd_plot(st.session_state.output_rank),
-            type="primary"
-        )
+        svd_plot(st.session_state.output_rank)
 
 
 if __name__ == "__main__":
