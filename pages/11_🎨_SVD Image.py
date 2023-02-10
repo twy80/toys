@@ -100,7 +100,7 @@ def run_svd_image():
     This is the main function calling svd_plot().
     """
 
-    from PIL import Image
+    from PIL import Image, UnidentifiedImageError
 
     st.write("## 🎨 Image Compression by SVD")
 
@@ -129,7 +129,12 @@ def run_svd_image():
     if image_file is not None:
         if st.session_state.new_image:
             # Process the uploaded image file
-            image = Image.open(image_file)
+            try:
+                image = Image.open(image_file)
+            except UnidentifiedImageError as e:
+                st.error(f"An error occurred: {e}", icon="🚨")
+                return None
+
             st.session_state.pre_output_rank = 1
 
             if max(image.width, image.height) > 1024:
@@ -188,6 +193,8 @@ def run_svd_image():
 
         # Compress the image by SVD
         svd_plot(st.session_state.output_rank)
+
+    return None
 
 
 if __name__ == "__main__":
