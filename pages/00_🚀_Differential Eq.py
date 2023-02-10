@@ -172,15 +172,16 @@ def run_lorenz():
         
         >> ${\\displaystyle \\frac{dz}{dt} = xy - \\beta z}$
         
-        Bifurcations occur in this system, and the responses can be chaotic.
-        For the sake of discussions, let us fix $(\\beta, \sigma)$ to
-        $(8/3 , 10)$ and vary $\\rho$. If $\,0 < \\rho < 1$, the origin is
-        the only equilibrium point. $\\rho = 1$ is where a pitchfork
-        bifurcation occurs, leading to two additional equlibria;
-        the origin then becomes unstable. Increasing $\\rho$
-        further will show interesting behaviour like existence of chaotic
-        solutions. To see this for example, set $\\rho$ to 28.
-        
+        Bifurcations occur in this system, and the responses can be
+        chaotic. For the sake of discussions, let us fix the initial
+        state $(x(0), y(0), z(0)))$ to $(1, 1, 1)$ and the parameters
+        $(\\beta, \sigma)$ to $(\\frac{8}{3} , 10)$.
+        If $\,0 < \\rho < 1$, the origin is the only equilibrium point.
+        $\\rho = 1$ is where a pitchfork bifurcation occurs, leading to
+        two additional equlibria; the origin then becomes unstable.
+        Increasing $\\rho$ further will show interesting behaviour like
+        existence of chaotic solutions. To see this for example, set
+        $\\rho$ to 28.        
         ---
         """
     )

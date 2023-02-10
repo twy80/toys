@@ -46,11 +46,18 @@ def main():
         
         * Lecture videos (in Korean)
         
-          - [Linear Algebra](https://youtube.com/playlist?list=PLIzv0-ErbDpwNdtK1OZ7Ew54s3tlXzX4Q)
-          - [Signals and Systems](https://youtube.com/playlist?list=PLIzv0-ErbDpxvwnZ3yFBLKuYP0fhDECov)
-          - [Complex Functions](https://youtube.com/playlist?list=PLIzv0-ErbDpyqRVlmnLsGeC_mLmu-dU-L)
-          - [Mathematical Thinking and Writing](https://youtu.be/eqHsIbwvvrk)
-          - [Science, Technology, and Gender Diversity](https://youtu.be/xUJ9e_hESG8)
+          - [Linear Algebra](https://youtube.com/playlist?list=PLIzv0-ErbDpwNdtK1OZ7Ew54s3tlXzX4Q),
+            2019
+          - [Signals and Systems](https://youtube.com/playlist?list=PLIzv0-ErbDpxvwnZ3yFBLKuYP0fhDECov),
+            2019
+          - [Complex Functions](https://youtube.com/playlist?list=PLIzv0-ErbDpyqRVlmnLsGeC_mLmu-dU-L),
+            2022
+          - [Mathematical Thinking and Writing](https://youtu.be/eqHsIbwvvrk),
+            2021
+          - [Science, Technology, and Gender Diversity](https://youtu.be/xUJ9e_hESG8),
+            2020
+          - [Certainties and Uncertainties of Mathematics](https://youtu.be/RMvVxr8czTU),
+            2013
         """
     )
     st.write("")
