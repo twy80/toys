@@ -181,10 +181,10 @@ def run_lorenz():
         two additional equlibria; the origin then becomes unstable.
         Increasing $\\rho$ further will show interesting behaviour like
         existence of chaotic solutions. To see this for example, set
-        $\\rho$ to 28.        
-        ---
+        $\\rho$ to 28.
         """
     )
+    st.write("---")
 
     # Input the value of rho
     rho_min, rho_init, rho_max = 1.0, 10.0, 30.0
