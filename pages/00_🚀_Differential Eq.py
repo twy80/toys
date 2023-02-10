@@ -186,6 +186,9 @@ def run_lorenz():
     )
 
     # Input the value of rho
+    if "pre_rho" not in st.session_state:
+        st.session_state.pre_rho = 10.0
+
     left, _, right = st.columns([5, 1, 5])
     option = left.radio(
         "$\\hspace{0.07em}\\texttt{How to set } \\rho$",
@@ -197,7 +200,8 @@ def run_lorenz():
     input_method = right.slider if option == "Slider" else right.number_input
     st.session_state.rho = input_method(
         label="$\\texttt{Value of }\\rho$",
-        min_value=1.0, max_value=30.0, value=10.0, step=0.1, format="%.2f"
+        min_value=1.0, max_value=30.0, value=st.session_state.pre_rho,
+        step=0.1, format="%.2f"
     )
 
     t_lorenz = np.linspace(0, 25, 10001)
