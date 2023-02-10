@@ -210,13 +210,20 @@ def fourier_transform():
 
     if audio_file is not None:
         # signal, sr = get_audio_data(audio_file)
-        sr, signal = read(audio_file)
+        try:
+            sr, signal = read(audio_file)
+        except Exception as e:
+            st.error(f"An error occurred: {e}", icon="🚨")
+            return None
+
         if len(signal.shape) == 2:
             signal = signal.mean(axis=1)
         st.audio(signal, sample_rate=sr)
 
         st.write("")
         show_results(signal, sr, plot_key="upload")
+
+    return None
 
 
 if __name__ == "__main__":
