@@ -58,16 +58,17 @@ def run_rlc():
         The equilirum state is unique and stable as long as the eigenvalues
         of the system, i.e. the roots of
         $\,\lambda^2 + \\frac{R}{L}\lambda + \\frac{1}{LC}=0\,$ have
-        negative real parts. This stability is guaranteed by setting $R$, $L$
-        and $C$ to be positive. Varying the values will only affect the transient
-        behavour.
+        negative real parts. This stability is guaranteed by setting $R$,
+        $L$ and $C$ to be positive. Varying the values will only affect
+        the transient behavour. In the simulations below, the initial
+        values for $v_c$ and $i$ are all set to zero.
         """
     )
     st.write("---")
 
     # Choose the unit step or a sine function for the input voltage
     input_choice = st.radio(
-        "$\\texttt{Choice of the input voltage?}$",
+        "$\\texttt{Choice of the input voltage}$",
         ("Unit step", "Sine wave")
     )
 
