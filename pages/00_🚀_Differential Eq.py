@@ -77,15 +77,15 @@ def run_rlc():
     with left:
         # Setting the R, L & C values
         resistor = st.slider(
-            label="$\\hspace{0.25em}\\texttt{Resistence R}$",
+            label="$\\texttt{Resistence R}$",
             min_value=0.1, max_value=5.0, value=1.0, step=0.1, format="%.1f"
         )
         inductor = st.slider(
-            label="$\\hspace{0.25em}\\texttt{Inductance L}$",
+            label="$\\texttt{Inductance L}$",
             min_value=0.1, max_value=5.0, value=1.0, step=0.1, format="%.1f"
         )
         capacitor = st.slider(
-            label="$\\hspace{0.25em}\\texttt{Capacitance C}$",
+            label="$\\texttt{Capacitance C}$",
             min_value=0.1, max_value=5.0, value=1.0, step=0.1, format="%.1f"
         )
 
@@ -118,9 +118,11 @@ def run_rlc():
         st.error(f"An error occurred: {e}", icon="🚨")
 
     st.write("")
+    st.write("$\\hspace{0.07em}\\texttt{\small Simulations results}$")
     plot_opt = st.radio(
-        "$\\hspace{0.25em}\\texttt{Simulations results}$",
-        ("Time responses & Phase portrait", "Time responses only")
+        "$\\texttt{Simulations results}$",
+        ("Time responses & Phase portrait", "Time responses only"),
+        label_visibility="collapsed"
     )
 
     st.write("")
@@ -215,6 +217,9 @@ def run_lorenz():
 
     except Exception as e:
         st.error(f"An error occurred: {e}", icon="🚨")
+
+    st.write("")
+    st.write("$\\hspace{0.07em}\\texttt{\small Simulations results}$")
 
     fig = plt.figure()
 
