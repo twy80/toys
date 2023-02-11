@@ -48,10 +48,10 @@ def main():
         
           - [Linear Algebra](https://youtube.com/playlist?list=PLIzv0-ErbDpwNdtK1OZ7Ew54s3tlXzX4Q),
             2019
-          - [Signals and Systems](https://youtube.com/playlist?list=PLIzv0-ErbDpxvwnZ3yFBLKuYP0fhDECov),
-            2019
           - [Complex Functions](https://youtube.com/playlist?list=PLIzv0-ErbDpyqRVlmnLsGeC_mLmu-dU-L),
             2022
+          - [Signals and Systems](https://youtube.com/playlist?list=PLIzv0-ErbDpxvwnZ3yFBLKuYP0fhDECov),
+            2019
           - [Mathematical Thinking and Writing](https://youtu.be/eqHsIbwvvrk),
             2021
           - [Science, Technology, and Gender Diversity](https://youtu.be/xUJ9e_hESG8),
