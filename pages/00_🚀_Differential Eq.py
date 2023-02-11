@@ -175,10 +175,10 @@ def run_lorenz():
         
         Bifurcations occur in this system, and the responses can be
         chaotic. For the sake of discussions, let us fix the initial
-        state variables $(x(0), y(0), z(0)))$ to $(1, 1, 1)$ and
+        state variables $(x(0), y(0), z(0))$ to $(1, 1, 1)$ and
         the parameters $(\\beta, \sigma)$ to $(\\frac{8}{3}, 10)$.
-        If $\,0 < \\rho < 1$, the origin is the only equilibrium point
-        that is stable. $\\rho = 1$ is where a pitchfork bifurcation
+        If $\,0 < \\rho < 1$, the origin is the only equilibrium point,
+        and is stable. $\\rho = 1$ is where a (pitchfork) bifurcation
         occurs, leading to two additional equlibria; the origin then
         becomes unstable. Increasing $\\rho$ further will show
         interesting behaviour like existence of chaotic solutions.
@@ -265,8 +265,8 @@ def run_sim():
         Differential equations form a mathematical language, which can precisely
         describe objects in the world that are varying over time. Being able to
         deal with differential equations is therefore an essential element for
-        science and technology. Two examples are given below: 2nd-order linear
-        and 3rd-order nonlinear dynamcal systems.
+        science and technology. Two examples are provided below: second-order
+        linear and third-order nonlinear dynamical systems.
         """
     )
 
