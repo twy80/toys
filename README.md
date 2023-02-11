@@ -7,7 +7,7 @@
     equations
 
   - SVD (Sinular Value Decomposition) together with a relation
-    with PCA (Principal Component Analsys)
+    with PCA (Principal Component Analysis)
 
   - SVD of an image file, which results in some sort of image
     compression
