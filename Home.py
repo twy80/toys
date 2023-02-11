@@ -56,7 +56,7 @@ def main():
             2021
           - [Science, Technology, and Gender Diversity](https://youtu.be/xUJ9e_hESG8),
             2020
-          - [Certainties and Uncertainties of Mathematics](https://youtu.be/RMvVxr8czTU),
+          - [Foundation of Mathematics and Kurt Friedrich Gödel](https://youtu.be/RMvVxr8czTU),
             2013
         """
     )
