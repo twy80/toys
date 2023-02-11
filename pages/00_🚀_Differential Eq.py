@@ -55,8 +55,8 @@ def run_rlc():
         >> $\quad{\\displaystyle \\frac{di}{dt} = -\\frac{1}{L}\,v_c -
         >> \\frac{R}{L}\,i + \\frac{1}{L}\,v}$.
         
-        The equilirum state is unique and stable as long as the eigenvalues
-        of the system, i.e. the roots of
+        The equilirum state is unique, and is stable as long as
+        the eigenvalues of the system, i.e. the roots of
         $\,\lambda^2 + \\frac{R}{L}\lambda + \\frac{1}{LC}=0\,$ have
         negative real parts. This stability is guaranteed by setting $R$,
         $L$ and $C$ to be positive. Varying the values will only affect
