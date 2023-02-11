@@ -3,8 +3,8 @@
 * This is for my students, and currently talks about the following
   toy examples.
   
-  - Simulation of a dynamical system described by a differential
-    equation
+  - Simulation of dynamical systems described by differential
+    equations
 
   - SVD (Sinular Value Decomposition) together with a relation
     with PCA (Principal Component Analsys)
