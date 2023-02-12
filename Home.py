@@ -35,13 +35,13 @@ def main():
                   
         ### How this site is written
           
-        * All the pages and scripts are written in python using the streamlit
+        * All the pages and scripts are written in python using the Streamlit
           framework.
     
         #### What TWY does
     
         * TWY teaches engineering mathematics, signals and systems,
-          technical writing, etc at Korea University.
+          technical writing, etc., at Korea University.
         
         * Lecture videos (in Korean)
         

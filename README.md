@@ -18,10 +18,10 @@
   - and using OpenAI APIs, which is added for fun.
 
 * All the pages and scripts are written in python using the
-  streamlit framework.
+  Streamlit framework.
 
 * TWY teaches engineering mathematics, signals and systems,
-  technical writing, etc at Korea University.
+  technical writing, etc., at Korea University.
 
 ## Usage
 ```python
