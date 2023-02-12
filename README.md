@@ -1,21 +1,21 @@
 # [TWY's Playground](https://twy80-toys-home-3xaua9.streamlit.app/)
 
-* This is for my students and currently discusses the following
+* This is for my students and currently covers the following
   toy examples:
   
-  - simulating dynamical systems described by differential
-    equations;
+  - Simulation of dynamical systems described by differential
+    equations
 
   - SVD (Sinular Value Decomposition) and its relation
-    to PCA (Principal Component Analysis);
+    to PCA (Principal Component Analysis)
 
   - SVD of an image file, which results in some sort of image
-    compression;
+    compression
 
   - Fourier transform (of sound waves), which is an essential
-    concept in signals and systems;
+    concept in signals and systems
 
-  - and using OpenAI APIs, which is added for fun.
+  - Use of OpenAI APIs, which is added for fun.
 
 * All the pages and scripts are written in python using the
   Streamlit framework.
