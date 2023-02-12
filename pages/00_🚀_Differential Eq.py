@@ -56,12 +56,12 @@ def run_rlc():
         >> \\frac{R}{L}\,i + \\frac{1}{L}\,v}$.
         
         The equilirum state is unique, and is stable as long as
-        the eigenvalues of the system, i.e. the roots of
-        $\,\lambda^2 + \\frac{R}{L}\lambda + \\frac{1}{LC}=0\,$ have
-        negative real parts. This stability is guaranteed by setting $R$,
-        $L$ and $C$ to be positive. Varying the values will only affect
-        the transient behavour. In the simulations below, the initial
-        values for $v_c$ and $i$ are all set to zero.
+        the eigenvalues of the system, the roots of
+        $\,\lambda^2 + \\frac{R}{L}\lambda + \\frac{1}{LC}=0$, have
+        negative real parts. This stability is ensured by setting 
+        positive values for $R$, $L$ and $C$. Varying these values will
+        only impact the transient behavour. In the simulations below,
+        the initial values for $v_c$ and $i$ are all set to zero.
         """
     )
     st.write("---")
@@ -172,15 +172,15 @@ def run_lorenz():
         >> ${\\displaystyle \\frac{dz}{dt} = xy - \\beta z}$
         
         Bifurcations occur in this system, and the responses can be
-        chaotic. For the sake of discussions, let us fix the initial
+        chaotic. For discussion purposes, let's fix the initial
         state variables $(x(0), y(0), z(0))$ to $(1, 1, 1)$ and
         the parameters $(\\beta, \sigma)$ to $(\\frac{8}{3}, 10)$.
         If $\,0 < \\rho < 1$, the origin is the only equilibrium point,
         and is stable. $\\rho = 1$ is where a (pitchfork) bifurcation
         occurs, leading to two additional equlibria; the origin then
         becomes unstable. Increasing $\\rho$ further will show
-        interesting behaviour like existence of chaotic solutions.
-        To see this for example, set $\\rho$ to 28.
+        interesting behaviour, such as the existence of chaotic
+        solutions. To observe this for instance, set $\\rho$ to 28.
         """
     )
     st.write("---")
