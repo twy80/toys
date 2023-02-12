@@ -42,14 +42,9 @@ def svd_image(input_image, output_rank, new_image=True):
               = np.linalg.svd(input_image[:,:,i], full_matrices=False)
 
     for i in range(channels):  # Compress the image using SVD
-        try:  # See if the SVD results previously obtained can be reused
-            output_image[:,:,i] = (
-                st.session_state.u[:,:output_rank,i] * st.session_state.s[:output_rank,i]
-            ) @ st.session_state.vt[:output_rank,:,i]
-        except Exception:
-            raise Exception(
-                "\nProblems with the SVD results previously obtained. Set new_image = True!\n"
-            )
+        output_image[:,:,i] = (
+            st.session_state.u[:,:output_rank,i] * st.session_state.s[:output_rank,i]
+        ) @ st.session_state.vt[:output_rank,:,i]
 
         if channels == 1:  # grayscale images are reshaped back to be 2-dimensional images
             output_image = output_image.reshape(rows, columns)

@@ -224,7 +224,6 @@ def run_lorenz():
     except Exception as e:
         st.error(f"An error occurred: {e}", icon="🚨")
 
-    st.write("")
     st.write("$\\hspace{0.07em}\\texttt{\small Simulations results}$")
     plot_opt = st.radio(
         "$\\texttt{Simulations results}$",
@@ -237,7 +236,7 @@ def run_lorenz():
         if plot_opt == "Time responses & Phase portrait":
             states = "$x(t)$", "$y(t)$", "$z(t)$"
             colors = "k", "b", "g"
-            ax1 = 3*[None]
+            ax1 = 3 * [None]
 
             for k in range(3):
                 ax1[k] = plt.subplot2grid((3, 2),  (k, 0), fig=fig)
