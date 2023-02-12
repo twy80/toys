@@ -126,8 +126,6 @@ def run_rlc():
         label_visibility="collapsed"
     )
 
-    st.write("")
-
     if plot_opt == "Time responses & Phase portrait":
         fig, ax = plt.subplots(1, 2)
         ax[0].plot(t_rlc, x_rlc[:, 0], "g", label="$v_C(t)$")
@@ -228,32 +226,46 @@ def run_lorenz():
 
     st.write("")
     st.write("$\\hspace{0.07em}\\texttt{\small Simulations results}$")
+    plot_opt = st.radio(
+        "$\\texttt{Simulations results}$",
+        ("Time responses & Phase portrait", "Phase portrait only"),
+        label_visibility="collapsed"
+    )
 
     fig = plt.figure()
+    try:
+        if plot_opt == "Time responses & Phase portrait":
+            states = "$x(t)$", "$y(t)$", "$z(t)$"
+            colors = "k", "b", "g"
+            ax1 = 3*[None]
 
-    states = "$x(t)$", "$y(t)$", "$z(t)$"
-    colors = "k", "b", "g"
-    ax1 = 3*[None]
+            for k in range(3):
+                ax1[k] = plt.subplot2grid((3, 2),  (k, 0), fig=fig)
+                ax1[k].plot(t_lorenz, x_lorenz[:,k], color=colors[k], alpha=0.8)
+                ax1[k].set_xlabel('Time')
+                ax1[k].set_ylabel(states[k])
+            ax1[0].set_title("Time responses")
+            ax2 = plt.subplot2grid((3, 2), (0, 1), projection="3d", rowspan=3, fig=fig)
+            ax2.set_title("Phase portrait")
+        else:
+            ax2 = fig.add_subplot(111, projection='3d')
 
-    for k in range(3):
-        ax1[k] = plt.subplot2grid((3, 2),  (k, 0), fig=fig)
-        ax1[k].plot(t_lorenz, x_lorenz[:,k], color=colors[k], alpha=0.8)
-        ax1[k].set_xlabel('Time')
-        ax1[k].set_ylabel(states[k])
-    ax1[0].set_title("Time responses")
+        ax2.plot(x_lorenz[0, 0], x_lorenz[0, 1], x_lorenz[0, 2], "o")
+        ax2.plot(x_lorenz[:,0], x_lorenz[:,1], x_lorenz[:,2], color="r", alpha=0.5)
+        ax2.set_xlabel('$x$')
+        ax2.set_ylabel('$y$')
+        ax2.set_zlabel('$z$')
+        ax2.set_xticks([-20, -10, 0, 10, 20])
+        ax2.set_yticks([-20, -10, 0, 10, 20])
+        ax2.set_zticks([0, 10, 20, 30, 40])
 
-    ax2 = plt.subplot2grid((3, 2), (0, 1), projection="3d", rowspan=3, fig=fig)
-    ax2.plot(x_lorenz[0, 0], x_lorenz[0, 1], x_lorenz[0, 2], "o")
-    ax2.plot(x_lorenz[:,0], x_lorenz[:,1], x_lorenz[:,2], color="r", alpha=0.5)
-    ax2.set_xlabel('$x$')
-    ax2.set_ylabel('$y$')
-    ax2.set_zlabel('$z$')
-    ax2.set_xticks([-20, -10, 0, 10, 20])
-    ax2.set_yticks([-20, -10, 0, 10, 20])
-    ax2.set_zticks([0, 10, 20, 30, 40])
-    ax2.set_title("Phase portrait")
+        st.pyplot(fig)
 
-    st.pyplot(fig)
+    except Exception:
+        st.error(
+            "Problems with plotting the results; reloading the app will help.",
+            icon="🚨"
+        )
 
 
 def run_sim():

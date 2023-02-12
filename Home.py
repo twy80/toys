@@ -31,8 +31,7 @@ def main():
           - Fourier transform (of sound waves), which is an essential concept
             in signals and systems
  
-          - Use of OpenAI APIs, which is added here with a hope of familiarizing
-            students with natural language models as in ChatGPT.
+          - Use of OpenAI APIs, which is added for fun.
                   
         ### How this site is written
           
