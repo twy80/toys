@@ -17,7 +17,7 @@ def main():
         """
         ### What this site is for
         
-        * This site is for my students and currently discuss the following
+        * This site is for my students and currently discusses the following
           toy examples:
 
           - simulating dynamical systems described by differential
