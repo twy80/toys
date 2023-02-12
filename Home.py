@@ -21,15 +21,15 @@ def main():
           toy examples:
 
           - simulating dynamical systems described by differential
-            equations
+            equations;
         
           - SVD (Sinular Value Decomposition) and its relation
-            to PCA (Principal Component Analysis)
+            to PCA (Principal Component Analysis);
           
-          - SVD of an image file, which results in some sort of image compression
+          - SVD of an image file, which results in some sort of image compression;
           
           - Fourier transform (of sound waves), which is an essential concept
-            in signals and systems
+            in signals and systems;
  
           - and using OpenAI APIs, which is added for fun.
                   
