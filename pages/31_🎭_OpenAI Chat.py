@@ -13,6 +13,14 @@ The following is a conversation with an AI assistant. The assistant is helpful, 
 **Human:** Hello, who are you?
 
 **AI:** I am an AI created by OpenAI. How can I help you today?
+
+**Human:** When showing computer code and commands, please wrap them with ``` as follows:
+
+```
+Code or command
+```
+
+**AI:** Got it. I will remember to wrap computer code and commands with ``` from now on.
 """
 
 
