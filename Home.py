@@ -61,13 +61,11 @@ def main():
     )
     st.write("")
 
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        st.info('**[Email](mailto:yoon.tw@gmail.com)**', icon="✉️")
-    with c2:
-        st.info('**[GitHub](https://github.com/twy80)**', icon="💻")
-    with c3:
-        st.info('**[Youtube](https://www.youtube.com/@twy80)**', icon="📺")
+    c1, c2, c3, c4 = st.columns(4)
+    c1.info('**[Email](mailto:yoon.tw@gmail.com)**', icon="✉️")
+    c2.info('**[Youtube](https://www.youtube.com/@twy80)**', icon="📺")
+    c3.info('**[GitHub](https://github.com/twy80)**', icon="💻")
+    c4.info('**[GitHub Blog](https://twy80.github.io/)**', icon="📖")
 
 
 if __name__ == "__main__":
