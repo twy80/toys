@@ -57,7 +57,7 @@ def do_fft(time_func, sample_rate=44100, max_freq=1000, time_plot=False, max_tim
         tspan = np.linspace(0, max_time, display_len)
 
         fig, axes = plt.subplots(2, 1)
-        axes[0].plot(tspan, time_func[:display_len], color= 'b')
+        axes[0].plot(tspan, time_func[:display_len], color='b')
         axes[0].xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
 
         axes[0].set_xlabel('Time')
