@@ -182,7 +182,7 @@ def fourier_transform():
                   + note_sound(freq=note_freq[note[4]], seconds=2)
 
     # Play the sound
-    st.audio(time_func[:int(len(time_func)/2)], sample_rate=sample_rate)
+    st.audio(time_func[:len(time_func)//2], sample_rate=sample_rate)
 
     # Do the fourier transform
     do_fft(time_func, time_plot=True, max_time=0.02)
