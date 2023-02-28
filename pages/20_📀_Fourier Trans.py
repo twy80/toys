@@ -220,7 +220,7 @@ def fourier_transform():
             if audio_bytes is None:
                 return None
             else:
-                audio_file = "files/recorded_audio_wav"
+                audio_file = "files/recorded_audio.wav"
                 with open(audio_file, "wb") as recorded_file:
                     recorded_file.write(audio_bytes)
         try:
