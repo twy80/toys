@@ -239,7 +239,7 @@ def fourier_transform():
     if audio_bytes is not None:
         # st.audio(audio_bytes, format="audio/wav")
         try:
-            with open("files/recorded_audio.wav", "wb") as audio_file:
+            with open("temp/recorded_audio.wav", "wb") as audio_file:
                 audio_file.write(audio_bytes)
             sr, signal = read("files/recorded_audio.wav")
         except Exception as e:
