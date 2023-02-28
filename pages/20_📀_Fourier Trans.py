@@ -102,7 +102,7 @@ def do_fft(time_func, sample_rate=44100, max_freq=1000, time_plot=False, max_tim
     # return np.array(sound.get_array_of_samples()), sound.frame_rate
 
 
-def show_results(signal, sr, plot_key):
+def show_results(signal, sr):
     """
     Show the results of fourier transforms
 
@@ -121,7 +121,6 @@ def show_results(signal, sr, plot_key):
         value=max_value_time,
         step=0.001,
         label_visibility="visible",
-        key=plot_key + "_time"
     )
     max_freq = right.slider(
         label="$\\hspace{0.25em}\\texttt{Frequency range}$",
@@ -130,7 +129,6 @@ def show_results(signal, sr, plot_key):
         value=max_value_freq,
         step=1.0,
         label_visibility="visible",
-        key=plot_key + "_freq"
     )
 
     do_fft(signal, sample_rate=sr, max_freq=max_freq, time_plot=True, max_time=max_time)
@@ -189,71 +187,54 @@ def fourier_transform():
     do_fft(time_func, time_plot=True, max_time=0.02)
 
     st.write("---")
-    st.write("##### Sample sound wave")
-    st.write("")
-
-    sr, signal = read("files/example.wav")
-    signal = signal.mean(axis=1)
-    st.audio(signal, sample_rate=sr)
-
-    st.write("")
-    show_results(signal, sr, plot_key="example")
-
-    st.write("---")
-    st.write("##### Upload an audio file")
-
-    audio_file = st.file_uploader(
-        label="$\\hspace{0.12em}\\texttt{Upload an audio file}$",
-        # type=["wav", "mp3", "ogg", "aac", "wma", "m4a", "flac"],
-        type=["wav"],
+    st.write("##### Select a sound wave")
+    sound_source = st.radio(
+        label="$\\hspace{0.12em}\\texttt{Select a sound wave}$",
+        options=("Sample file", "Your file", "Your voice"),
+        horizontal=True,
         label_visibility="collapsed"
     )
 
-    if audio_file is not None:
-        # signal, sr = get_audio_data(audio_file)
+    if sound_source == "Sample file":
+        sr, signal = read("files/example.wav")
+    else:
+        if sound_source == "Your file":
+            audio_file = st.file_uploader(
+                label="$\\hspace{0.12em}\\texttt{Upload an audio file}$",
+                # type=["wav", "mp3", "ogg", "aac", "wma", "m4a", "flac"],
+                type=["wav"],
+                label_visibility="collapsed"
+            )
+            if audio_file is None:
+                return None
+        else:
+            audio_bytes = audio_recorder(
+                pause_threshold=3.0,
+                #sample_rate=sr,
+                text="Click to record",
+                recording_color="#e8b62c",
+                neutral_color="#6aa36f",
+                # icon_name="user",
+                icon_size="2x",
+            )
+            if audio_bytes is None:
+                return None
+            else:
+                audio_file = "files/recorded_audio_wav"
+                with open(audio_file, "wb") as recorded_file:
+                    recorded_file.write(audio_bytes)
         try:
+            # signal, sr = get_audio_data(audio_file)
             sr, signal = read(audio_file)
         except Exception as e:
             st.error(f"An error occurred: {e}", icon="🚨")
             return None
 
-        if len(signal.shape) == 2:
-            signal = signal.mean(axis=1)
-        st.audio(signal, sample_rate=sr)
+    if len(signal.shape) == 2:
+        signal = signal.mean(axis=1)
+    st.audio(signal, sample_rate=sr)
 
-        st.write("")
-        show_results(signal, sr, plot_key="upload")
-
-    st.write("---")
-    st.write("##### Record your voice")
-
-    audio_bytes = audio_recorder(
-        pause_threshold=3.0,
-        #sample_rate=sr,
-        text="Click to record",
-        recording_color="#e8b62c",
-        neutral_color="#6aa36f",
-        # icon_name="user",
-        icon_size="2x",
-    )
-    if audio_bytes is not None:
-        # st.audio(audio_bytes, format="audio/wav")
-        try:
-            with open("files/recorded_audio.wav", "wb") as audio_file:
-                audio_file.write(audio_bytes)
-            sr, signal = read("files/recorded_audio.wav")
-        except Exception as e:
-            st.error(f"An error occurred: {e}", icon="🚨")
-            return None
-
-        if len(signal.shape) == 2:
-            signal = signal.mean(axis=1)
-        st.audio(signal, sample_rate=sr)
-
-        st.write("")
-        show_results(signal, sr, plot_key="voice")
-
-    return None
+    show_results(signal, sr)
 
 
 if __name__ == "__main__":
