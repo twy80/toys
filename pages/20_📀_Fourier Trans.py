@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 # from pydub import AudioSegment
 from scipy.io.wavfile import read
+from audio_recorder_streamlit import audio_recorder
 
 
 def note_sound(freq=391.9954, sample_rate=44100, seconds=2):
@@ -222,6 +223,35 @@ def fourier_transform():
 
         st.write("")
         show_results(signal, sr, plot_key="upload")
+
+    st.write("---")
+    st.write("##### Record your voice")
+
+    audio_bytes = audio_recorder(
+        pause_threshold=3.0,
+        #sample_rate=sr,
+        text="Click to record",
+        recording_color="#e8b62c",
+        neutral_color="#6aa36f",
+        # icon_name="user",
+        icon_size="2x",
+    )
+    if audio_bytes is not None:
+        # st.audio(audio_bytes, format="audio/wav")
+        try:
+            with open("files/recorded_audio.wav", "wb") as audio_file:
+                audio_file.write(audio_bytes)
+            sr, signal = read("files/recorded_audio.wav")
+        except Exception as e:
+            st.error(f"An error occurred: {e}", icon="🚨")
+            return None
+
+        if len(signal.shape) == 2:
+            signal = signal.mean(axis=1)
+        st.audio(signal, sample_rate=sr)
+
+        st.write("")
+        show_results(signal, sr, plot_key="voice")
 
     return None
 
