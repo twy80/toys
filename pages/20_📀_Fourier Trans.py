@@ -148,7 +148,7 @@ def fourier_transform():
         between a function of time (or space) and a function of frequency,
         which contain the same information. Fourier transforms are obtained
         by decomposing functions of time (or space) into frequency
-        components. Here is a simple example of showing frequency
+        components. Here are some simple examples that show the frequency
         components of sound waves using Fourier transformation.
         """
     )
