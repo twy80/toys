@@ -234,8 +234,7 @@ def fourier_transform():
         if len(signal.shape) == 2:
             signal = signal.mean(axis=1)
         st.audio(signal, sample_rate=sr)
-
-    show_results(signal, sr)
+        show_results(signal, sr)
 
 
 if __name__ == "__main__":
