@@ -99,15 +99,18 @@ def openai_create():
     # )
     # st.write("(You can obtain an API key from https://beta.openai.com.)")
 
-    option = st.selectbox(
+    st.write("")
+    st.write("##### What to generate:")
+    option = st.radio(
         "$\\hspace{0.25em}\\texttt{What would you like to generate? Code, Text, or Image?}$",
         ('Code', 'Text', 'Image'),
+        label_visibility="collapsed",
         index=2
     )
 
-    code_message = "$\\hspace{0.25em}\\texttt{Give a description in the comment style of your language}$"
-    text_message = "$\\hspace{0.25em}\\texttt{Give a prompt message for your query}$"
-    image_message = "$\\hspace{0.25em}\\texttt{Give a description for your image}$"    
+    code_message = "Give a description in the comment style of your language"
+    text_message = "Give a prompt message for your query"
+    image_message = "Give a description for your image"    
     
     options = {
         "Code": (openai_create_code, code_message),
@@ -116,10 +119,12 @@ def openai_create():
     }
     
     # Get the code description from the user
+    st.write("")
+    st.write(f"##### {options[option][1]}:")
     description = st.text_area(
         label=options[option][1],
         # value="",
-        label_visibility="visible"
+        label_visibility="collapsed"
     )
 
     left, _ = st.columns(2) # To show the results below the button
