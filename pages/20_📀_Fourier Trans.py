@@ -232,7 +232,10 @@ def fourier_transform():
 
     if len(signal.shape) == 2:
         signal = signal.mean(axis=1)
-    st.audio(signal, sample_rate=sr)
+    try:
+        st.audio(signal, sample_rate=sr)
+    except Exception:
+        return None
 
     show_results(signal, sr)
 
