@@ -235,7 +235,7 @@ def fourier_transform():
     try:
         st.audio(signal, sample_rate=sr)
     except Exception:
-        return None
+        pass
 
     show_results(signal, sr)
 
