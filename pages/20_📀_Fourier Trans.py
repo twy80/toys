@@ -191,7 +191,7 @@ def fourier_transform():
     sound_source = st.radio(
         label="$\\hspace{0.12em}\\texttt{Select a sound wave}$",
         options=("Sample file", "Your file", "Your voice"),
-        horizontal=True,
+        # horizontal=True,
         label_visibility="collapsed"
     )
 
@@ -210,7 +210,7 @@ def fourier_transform():
         else:
             audio_bytes = audio_recorder(
                 pause_threshold=3.0,
-                #sample_rate=sr,
+                # sample_rate=sr,
                 text="Click to record",
                 recording_color="#e8b62c",
                 neutral_color="#6aa36f",
