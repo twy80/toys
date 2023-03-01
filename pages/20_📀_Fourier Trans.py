@@ -197,8 +197,6 @@ def fourier_transform():
 
     if sound_source == "Sample file":
         sr, signal = read("files/example.wav")
-        signal = signal.mean(axis=1)
-        st.audio(signal, sample_rate=sr)
     else:
         if sound_source == "Your file":
             audio_file = st.file_uploader(
@@ -219,12 +217,12 @@ def fourier_transform():
                 # icon_name="user",
                 icon_size="2x",
             )
-            if audio_bytes is None:
-                return None
-            else:
+            if audio_bytes:
                 audio_file = "files/recorded_audio.wav"
                 with open(audio_file, "wb") as recorded_file:
                     recorded_file.write(audio_bytes)
+            else:
+                return None
         try:
             # signal, sr = get_audio_data(audio_file)
             sr, signal = read(audio_file)
@@ -232,9 +230,9 @@ def fourier_transform():
             st.error(f"An error occurred: {e}", icon="🚨")
             return None
 
-        if len(signal.shape) == 2:
-            signal = signal.mean(axis=1)
-        st.audio(signal, sample_rate=sr)
+    if len(signal.shape) == 2:
+        signal = signal.mean(axis=1)
+    st.audio(signal, sample_rate=sr)
 
     show_results(signal, sr)
 
