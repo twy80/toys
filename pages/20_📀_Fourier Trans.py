@@ -230,7 +230,7 @@ def fourier_transform():
             st.error(f"An error occurred: {e}", icon="🚨")
             return None
 
-    if signal:
+    if signal.any():
         if len(signal.shape) == 2:
             signal = signal.mean(axis=1)
         st.audio(signal, sample_rate=sr)
