@@ -72,8 +72,7 @@ def openai_create_image(description, returning=False):
         description (string): User description
         returning (bool, optional): _description_. Defaults to False.
 
-    Returns:
-        image url if successful
+    The resulting image is plotted or its url is returned.
     """
 
     if description.strip() == "":
