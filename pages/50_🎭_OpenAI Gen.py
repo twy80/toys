@@ -7,7 +7,6 @@ import streamlit as st
 from audio_recorder_streamlit import audio_recorder
 # import clipboard
 
-
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 # openai.api_key = os.getenv("OPENAI_API_KEY")
 # openai.api_key = st.text_input(
@@ -109,6 +108,7 @@ def reset_conversation():
     st.session_state.human_enq = []
     st.session_state.ai_resp = []
     st.session_state.initial_temp = 0.7
+    st.session_state.pre_audio_bytes = None
 
 
 def reset_initial_temp():
