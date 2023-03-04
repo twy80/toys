@@ -4,6 +4,7 @@ ChatGPT & DALL·E using openai API (by T.-W. Yoon, Mar. 2023)
 
 import openai
 import streamlit as st
+from audio_recorder_streamlit import audio_recorder
 # import clipboard
 
 
@@ -144,6 +145,9 @@ def create_text():
     if "initial_temp" not in st.session_state:
         st.session_state.initial_temp = 0.7
 
+    if "pre_audio_bytes" not in st.session_state:
+        st.session_state.pre_audio_bytes = None
+
     left, _ = st.columns([5, 6])
     st.session_state.temp_value = left.slider(
         label="$\\hspace{0.08em}\\texttt{Temperature}\,$ (higher $\Rightarrow$ more random)",
@@ -176,8 +180,33 @@ def create_text():
         on_click=reset_conversation
     )
 
+    # Use your microphone
+    audio_bytes = audio_recorder(
+        pause_threshold=2.0,
+        # sample_rate=sr,
+        text="Speak",
+        recording_color="#e8b62c",
+        neutral_color="#6aa36f",
+        # icon_name="user",
+        icon_size="2x",
+    )
+    if audio_bytes != st.session_state.pre_audio_bytes:
+        audio_file = "files/recorded_audio.wav"
+        with open(audio_file, "wb") as recorded_file:
+            recorded_file.write(audio_bytes)
+        audio_data = open(audio_file, "rb")
+
+        transcript = openai.Audio.transcribe("whisper-1", audio_data)
+
+        user_input_stripped = transcript['text']
+        st.write("**Human:** " + user_input_stripped)
+        openai_create_text(
+            user_input_stripped, temperature=st.session_state.temp_value
+        )
+        st.session_state.pre_audio_bytes = audio_bytes
+
     if not st.session_state.ignore_this and user_input_stripped != "":
-        st.write(st.session_state.generated_text)
+        st.write("**AI:** " + st.session_state.generated_text)
         st.session_state.human_enq.append(user_input_stripped)
         st.session_state.ai_resp.append(st.session_state.generated_text)
         # clipboard.copy(st.session_state.generated_text)
@@ -220,11 +249,11 @@ def openai_create():
     stored_pin = st.secrets["USER_PIN"]
 
     st.write("")
-    st.write("##### Enter 6-digit PIN")
+    st.write("##### Enter $\,$Password")
 
     left, _ = st.columns([5, 6])
     user_pin = left.text_input(
-        label="Enter 6-digit PIN", type="password", label_visibility="collapsed"
+        label="Enter password", type="password", label_visibility="collapsed"
     )
 
     if user_pin == stored_pin:
