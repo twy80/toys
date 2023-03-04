@@ -77,7 +77,7 @@ def openai_create_image(description, returning=False):
     """
 
     if description.strip() == "":
-        output_message = ""
+        return None
     else:
         try:
             with st.spinner("AI is generating..."):
