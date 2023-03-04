@@ -92,6 +92,8 @@ def openai_create_image(description):
         except openai.error.OpenAIError as e:
             st.error(f"An error occurred: {e}", icon="🚨")
 
+    return None
+
 
 def reset_conversation():
     # to_clipboard = ""
