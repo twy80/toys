@@ -89,7 +89,6 @@ def openai_create_image(description, returning=False):
             image_url = response['data'][0]['url']
             output_message = "Success"
         except openai.error.OpenAIError as e:
-            st.error(f"An error occurred: {e}", icon="🚨")
             output_message = f"An error occurred: {e}"
 
     if output_message == "Success":
@@ -104,7 +103,7 @@ def openai_create_image(description, returning=False):
         if returning:
             return output_message
         else:
-            st.write(output_message)
+            st.error(output_message, icon="🚨")
 
 
 def reset_conversation():
