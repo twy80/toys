@@ -272,7 +272,7 @@ def openai_create():
         else:
             create_image()
     else:
-        left.error("incorrect PIN. Please try again.", icon="🚨")
+        left.error("Incorrect password. Please try again.", icon="🚨")
 
 
 if __name__ == "__main__":
