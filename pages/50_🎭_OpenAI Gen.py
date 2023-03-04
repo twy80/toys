@@ -204,10 +204,10 @@ def create_text():
             openai_create_text(
                 user_input_stripped, temperature=st.session_state.temp_value
             )
-            st.session_state.pre_audio_bytes = audio_bytes
         except Exception as e:
-            st.session_state.pre_audio_bytes = None
             st.error(f"An error occurred: {e}", icon="🚨")
+
+        st.session_state.pre_audio_bytes = audio_bytes
 
     if not st.session_state.ignore_this and user_input_stripped != "":
         st.write("**AI:** " + st.session_state.generated_text)
