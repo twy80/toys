@@ -195,7 +195,7 @@ def create_image():
     by calling openai_create_image().
     """
 
-    # Get the code description from the user
+    # Get the image description from the user
     # st.write(f"##### Description for your image (in English)")
     description = st.text_area(
         label="$\\hspace{0.1em}\\texttt{Description for your image}\,$ (in $\,$English)",
@@ -212,7 +212,7 @@ def create_image():
 
 def openai_create():
     """
-    Main function generates text or image by calling
+    This main function generates text or image by calling
     openai_create_text() or openai_create_image(), respectively.
     """
     st.write("## 🎭 OpenAI Generator")
