@@ -158,7 +158,7 @@ def create_text():
         st.write("**Human:** " + human)
         st.write("**AI:** " + ai)
 
-    # Get the code description from the user
+    # Get the text description from the user
     user_input = st.text_area(
         label="$\\hspace{0.08em}\\texttt{Human}$",
         value="",
