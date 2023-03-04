@@ -65,15 +65,13 @@ def openai_create_text(user_prompt, temperature=0.7):
     return None
 
 
-def openai_create_image(description, returning=False):
+def openai_create_image(description):
     """
     This function generates image based on user description.
     Args:
         description (string): User description
-        returning (bool, optional): Defaults to False.
 
-    The resulting image is plotted or its url is returned,
-    depending on whether returning is False or True.
+    The resulting image is plotted.
     """
 
     if description.strip() == "":
@@ -87,23 +85,12 @@ def openai_create_image(description, returning=False):
                     size="1024x1024"
                 )
             image_url = response['data'][0]['url']
-            output_message = "Success"
-        except openai.error.OpenAIError as e:
-            output_message = f"An error occurred: {e}"
-
-    if output_message == "Success":
-        if returning:
-            return image_url
-        else:
             st.image(
                 image=image_url,
                 use_column_width=True
             )
-    else:
-        if returning:
-            return output_message
-        else:
-            st.error(output_message, icon="🚨")
+        except openai.error.OpenAIError as e:
+            st.error(f"An error occurred: {e}", icon="🚨")
 
 
 def reset_conversation():
@@ -155,7 +142,7 @@ def create_text():
     if "initial_temp" not in st.session_state:
         st.session_state.initial_temp = 0.7
 
-    left, _ = st.columns([4, 6])
+    left, _ = st.columns([5, 6])
     st.session_state.temp_value = left.slider(
         label="$\\hspace{0.08em}\\texttt{Temperature}\,$ (higher $\Rightarrow$ more random)",
         min_value=0.0, max_value=1.0, value=st.session_state.initial_temp,
@@ -233,7 +220,7 @@ def openai_create():
     st.write("")
     st.write("##### Enter 6-digit PIN")
 
-    left, _ = st.columns([4, 6])
+    left, _ = st.columns([5, 6])
     user_pin = left.text_input(
         label="Enter 6-digit PIN", type="password", label_visibility="collapsed"
     )
