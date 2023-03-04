@@ -134,9 +134,9 @@ def run_svd_image():
 
             if max(image.width, image.height) > 1024:
                 if image.width > image.height:
-                    new_width, new_height = 1024, int(image.height * 1024 / image.width)
+                    new_width, new_height = 1024, image.height * 1024 // image.width
                 else:
-                    new_width, new_height = int(image.width * 1024 / image.height), 1024
+                    new_width, new_height = image.width * 1024 // image.height, 1024
 
                 image = image.resize((new_width, new_height))
 
