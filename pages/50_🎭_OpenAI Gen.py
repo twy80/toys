@@ -77,21 +77,21 @@ def openai_create_image(description):
 
     if description.strip() == "":
         return None
-    else:
-        try:
-            with st.spinner("AI is generating..."):
-                response = openai.Image.create(
-                    prompt=description,
-                    n=1,
-                    size="1024x1024"
-                )
-            image_url = response['data'][0]['url']
-            st.image(
-                image=image_url,
-                use_column_width=True
+
+    try:
+        with st.spinner("AI is generating..."):
+            response = openai.Image.create(
+                prompt=description,
+                n=1,
+                size="1024x1024"
             )
-        except openai.error.OpenAIError as e:
-            st.error(f"An error occurred: {e}", icon="🚨")
+        image_url = response['data'][0]['url']
+        st.image(
+            image=image_url,
+            use_column_width=True
+        )
+    except openai.error.OpenAIError as e:
+        st.error(f"An error occurred: {e}", icon="🚨")
 
     return None
 
