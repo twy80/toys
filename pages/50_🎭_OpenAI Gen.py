@@ -162,8 +162,8 @@ def create_text():
     st.write("##### Conversation with AI")
 
     for (human, ai) in zip(st.session_state.human_enq, st.session_state.ai_resp):
-        st.write("**Human:** " + human)
-        st.write("**AI:** " + ai)
+        st.write("**:blue[Human:]** " + human)
+        st.write("**:blue[AI:]** " + ai)
 
     # Get the text description from the user
     user_input = st.text_area(
@@ -203,7 +203,7 @@ def create_text():
             transcript = openai.Audio.transcribe("whisper-1", audio_data)
 
             user_input_stripped = transcript['text']
-            st.write("**Human:** " + user_input_stripped)
+            st.write("**:blue[Human:]** " + user_input_stripped)
             openai_create_text(
                 user_input_stripped, temperature=st.session_state.temp_value
             )
@@ -213,7 +213,7 @@ def create_text():
         st.session_state.pre_audio_bytes = audio_bytes
 
     if not st.session_state.ignore_this and user_input_stripped != "":
-        st.write("**AI:** " + st.session_state.generated_text)
+        st.write("**:blue[AI:]** " + st.session_state.generated_text)
         st.session_state.human_enq.append(user_input_stripped)
         st.session_state.ai_resp.append(st.session_state.generated_text)
         # clipboard.copy(st.session_state.generated_text)
