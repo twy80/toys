@@ -5,6 +5,8 @@ ChatGPT & DALL·E using openai API (by T.-W. Yoon, Mar. 2023)
 import openai
 import streamlit as st
 from audio_recorder_streamlit import audio_recorder
+from langdetect import detect
+from gtts import gTTS
 # import clipboard
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
@@ -188,7 +190,7 @@ def create_text():
         pause_threshold=2.0,
         # sample_rate=sr,
         text="Speak",
-        recording_color="#e8b62c",
+        recording_color="#e87070",
         neutral_color="#6aa36f",
         # icon_name="user",
         icon_size="2x",
@@ -213,6 +215,14 @@ def create_text():
     if not st.session_state.ignore_this and user_input_stripped != "":
         st.write("**:blue[Human:]** " + user_input_stripped)
         st.write("**:blue[AI:]** " + st.session_state.generated_text)
+
+        # TTS
+        lang = detect(st.session_state.generated_text)
+        tts = gTTS(text=st.session_state.generated_text, lang=lang)
+        text_audio_file = "files/output_text.wav"
+        tts.save(text_audio_file)
+        st.audio(text_audio_file)
+
         st.session_state.human_enq.append(user_input_stripped)
         st.session_state.ai_resp.append(st.session_state.generated_text)
         # clipboard.copy(st.session_state.generated_text)
