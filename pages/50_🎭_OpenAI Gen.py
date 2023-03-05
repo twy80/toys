@@ -65,11 +65,12 @@ def openai_create_text(user_prompt, temperature=0.7):
     return None
 
 
-def openai_create_image(description):
+def openai_create_image(description, size="512x512"):
     """
     This function generates image based on user description.
     Args:
         description (string): User description
+        size (string): Pixel size of the generated image
 
     The resulting image is plotted.
     """
@@ -82,7 +83,7 @@ def openai_create_image(description):
             response = openai.Image.create(
                 prompt=description,
                 n=1,
-                size="1024x1024"
+                size=size
             )
         image_url = response['data'][0]['url']
         st.image(
@@ -102,17 +103,18 @@ def reset_conversation():
     #    to_clipboard += "\nAI: " + ai + "\n"
     # clipboard.copy(to_clipboard)
 
-    st.session_state.ignore_this = True
     st.session_state.generated_text = None
     st.session_state.prompt = initial_prompt
     st.session_state.human_enq = []
     st.session_state.ai_resp = []
+    st.session_state.ignore_this = True
     st.session_state.initial_temp = 0.7
     st.session_state.pre_audio_bytes = None
 
 
-def reset_initial_temp():
+def switch_between_two_apps():
     st.session_state.initial_temp = st.session_state.temp_value
+    st.session_state.pre_audio_bytes = None
 
 
 def ignore_this():
@@ -148,6 +150,7 @@ def create_text():
     if "pre_audio_bytes" not in st.session_state:
         st.session_state.pre_audio_bytes = None
 
+    st.write("")
     left, _ = st.columns([5, 6])
     st.session_state.temp_value = left.slider(
         label="$\\hspace{0.08em}\\texttt{Temperature}\,$ (higher $\Rightarrow$ more random)",
@@ -228,6 +231,15 @@ def create_image():
     by calling openai_create_image().
     """
 
+    # Set the image size
+    st.write("")
+    image_size = st.radio(
+        "$\\hspace{0.1em}\\texttt{Pixel size}$",
+        ('256x256', '512x512', '1024x1024'),
+        horizontal=True,
+        index=1
+    )
+
     # Get the image description from the user
     # st.write(f"##### Description for your image (in English)")
     description = st.text_area(
@@ -239,7 +251,7 @@ def create_image():
     left, _ = st.columns(2) # To show the results below the button
     left.button(
         label="Generate",
-        on_click=openai_create_image(description)
+        on_click=openai_create_image(description, image_size)
     )
 
 
@@ -268,7 +280,7 @@ def openai_create():
             ('Text (GPT3.5)', 'Image (DALL·E)'),
             label_visibility="collapsed",
             horizontal=True,
-            on_change=reset_initial_temp
+            on_change=switch_between_two_apps
         )
 
         if option == 'Text (GPT3.5)':
