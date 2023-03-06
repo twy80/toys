@@ -295,7 +295,7 @@ def openai_create():
     stored_pin = st.secrets["USER_PIN"]
 
     with st.sidebar:
-        st.write("")
+        # st.write("")
         st.write("**Password**")
         user_pin = st.text_input(
             label="Enter password", type="password", label_visibility="collapsed"
