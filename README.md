@@ -1,4 +1,4 @@
-# [TWY's Playground](https://twy80-toys-home-3xaua9.streamlit.app/)
+# [TWY's Playground](https://twy-playground.streamlit.app/)
 
 * This is for my students and currently covers the following
   toy examples:
