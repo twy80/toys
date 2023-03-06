@@ -23,17 +23,20 @@ initial_prompt = [
 ]
 
 
-def openai_create_text(user_prompt, temperature=0.7):
+def openai_create_text(user_prompt, temperature=0.7, authen=True):
     """
-    This function generates text based on user input.
+    This function generates text based on user input
+    if authen is True.
+
     Args:
         user_prompt (string): User input
-        temperature (float): Value between 0 and 1. Defaults to 0.7.
+        temperature (float): Value between 0 and 1. Defaults to 0.7
+        authen (bool): Defaults to True.
 
     The results are stored in st.session_state variables.
     """
 
-    if user_prompt == "" or st.session_state.ignore_this:
+    if not authen or user_prompt == "" or st.session_state.ignore_this:
         return None
 
     # Add the user input to the prompt
@@ -67,9 +70,11 @@ def openai_create_text(user_prompt, temperature=0.7):
     return None
 
 
-def openai_create_image(description, size="512x512"):
+def openai_create_image(description, size="512x512", authen=True):
     """
-    This function generates image based on user description.
+    This function generates image based on user description
+    if authen is True.
+
     Args:
         description (string): User description
         size (string): Pixel size of the generated image
@@ -77,7 +82,7 @@ def openai_create_image(description, size="512x512"):
     The resulting image is plotted.
     """
 
-    if description.strip() == "":
+    if not authen or description.strip() == "":
         return None
 
     try:
@@ -123,10 +128,11 @@ def ignore_this():
     st.session_state.ignore_this = True
 
 
-def create_text():
+def create_text(authen):
     """
     This function geneates text based on user input
-    by calling openai_create_text().
+    by calling openai_create_text()
+    if user password is valid (authen = True).
     """
 
     # from streamlit_chat import message
@@ -152,15 +158,19 @@ def create_text():
     if "pre_audio_bytes" not in st.session_state:
         st.session_state.pre_audio_bytes = None
 
-    st.write("")
-    left, _ = st.columns([5, 6])
-    st.session_state.temp_value = left.slider(
-        label="$\\hspace{0.08em}\\texttt{Temperature}\,$ (higher $\Rightarrow$ more random)",
-        min_value=0.0, max_value=1.0, value=st.session_state.initial_temp,
-        step=0.1, format="%.1f",
-        on_change=ignore_this
-    )
+    with st.sidebar:
+        st.write("")
+        st.write("**Temperature**")
+        st.session_state.temp_value = st.slider(
+            label="$\\hspace{0.08em}\\texttt{Temperature}\,$ (higher $\Rightarrow$ more random)",
+            min_value=0.0, max_value=1.0, value=st.session_state.initial_temp,
+            step=0.1, format="%.1f",
+            on_change=ignore_this,
+            label_visibility="collapsed"
+        )
+        st.write("(Higher $\Rightarrow$ More random)")
 
+    st.write("")
     st.write("##### Conversation with AI")
 
     for (human, ai) in zip(st.session_state.human_enq, st.session_state.ai_resp):
@@ -178,7 +188,11 @@ def create_text():
     left, right = st.columns(2) # To show the results below the button
     left.button(
         label="Send",
-        on_click=openai_create_text(user_input_stripped, temperature=st.session_state.temp_value)
+        on_click=openai_create_text(
+            user_input_stripped,
+            temperature=st.session_state.temp_value,
+            authen=authen
+        )
     )
     right.button(
         label="Reset",
@@ -195,7 +209,7 @@ def create_text():
         # icon_name="user",
         icon_size="2x",
     )
-    if audio_bytes != st.session_state.pre_audio_bytes:
+    if authen and audio_bytes != st.session_state.pre_audio_bytes:
         try:
             audio_file = "files/recorded_audio.wav"
             with open(audio_file, "wb") as recorded_file:
@@ -206,13 +220,15 @@ def create_text():
 
             user_input_stripped = transcript['text']
             openai_create_text(
-                user_input_stripped, temperature=st.session_state.temp_value
+                user_input_stripped,
+                temperature=st.session_state.temp_value,
+                authen=authen
             )
         except Exception as e:
             st.error(f"An error occurred: {e}", icon="🚨")
         st.session_state.pre_audio_bytes = audio_bytes
 
-    if not st.session_state.ignore_this and user_input_stripped != "":
+    if authen and not st.session_state.ignore_this and user_input_stripped != "":
         st.write("**:blue[Human:]** " + user_input_stripped)
         st.write("**:blue[AI:]** " + st.session_state.generated_text)
 
@@ -234,27 +250,32 @@ def create_text():
     st.session_state.ignore_this = False
 
 
-def create_image():
+def create_image(authen):
     """
     This function geneates image based on user description
-    by calling openai_create_image().
+    by calling openai_create_image()
+    if user password is valid (authen = True).
     """
 
     # Set the image size
-    st.write("")
-    image_size = st.radio(
-        "$\\hspace{0.1em}\\texttt{Pixel size}$",
-        ('256x256', '512x512', '1024x1024'),
-        horizontal=True,
-        index=1
-    )
+    with st.sidebar:
+        st.write("")
+        st.write("**Pixel size**")
+        image_size = st.radio(
+            "$\\hspace{0.1em}\\texttt{Pixel size}$",
+            ('256x256', '512x512', '1024x1024'),
+            # horizontal=True,
+            index=1,
+            label_visibility="collapsed"
+        )
 
     # Get the image description from the user
-    # st.write(f"##### Description for your image (in English)")
+    st.write("")
+    st.write(f"##### Description for your image (in English)")
     description = st.text_area(
         label="$\\hspace{0.1em}\\texttt{Description for your image}\,$ (in $\,$English)",
         # value="",
-        label_visibility="visible"
+        label_visibility="collapsed"
     )
 
     left, _ = st.columns(2) # To show the results below the button
@@ -269,35 +290,35 @@ def openai_create():
     This main function generates text or image by calling
     openai_create_text() or openai_create_image(), respectively.
     """
-    st.write("## 🎭 OpenAI Generator")
+    st.write("## 🎭 ChatGPT & DALL·E")
 
     stored_pin = st.secrets["USER_PIN"]
 
-    st.write("")
-    st.write("##### Enter $\,$Password")
-
-    left, _ = st.columns([5, 6])
-    user_pin = left.text_input(
-        label="Enter password", type="password", label_visibility="collapsed"
-    )
-
-    if user_pin == stored_pin:
+    with st.sidebar:
         st.write("")
-        st.write("##### What to Generate")
-        option = st.radio(
+        st.write("**Password**")
+        user_pin = st.text_input(
+            label="Enter password", type="password", label_visibility="collapsed"
+        )
+        authen = user_pin == stored_pin
+
+        st.write("")
+        st.write("**What to Generate**")
+        option = st.sidebar.radio(
             "$\\hspace{0.25em}\\texttt{What to generate$",
             ('Text (GPT3.5)', 'Image (DALL·E)'),
             label_visibility="collapsed",
-            horizontal=True,
+            # horizontal=True,
             on_change=switch_between_two_apps
         )
 
-        if option == 'Text (GPT3.5)':
-            create_text()
-        else:
-            create_image()
+    if option == 'Text (GPT3.5)':
+        create_text(authen)
     else:
-        left.error("Incorrect password. Please try again.", icon="🚨")
+        create_image(authen)
+
+    if not authen:
+        st.error("**Incorrect password. Please try again.**", icon="🚨")
 
 
 if __name__ == "__main__":
