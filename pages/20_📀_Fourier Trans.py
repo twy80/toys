@@ -209,7 +209,7 @@ def fourier_transform():
                 return None
         else:
             audio_bytes = audio_recorder(
-                pause_threshold=3.0,
+                pause_threshold=2.0,
                 # sample_rate=sr,
                 text="Click to record",
                 recording_color="#e8b62c",
