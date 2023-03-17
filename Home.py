@@ -51,6 +51,8 @@ def main():
             2022
           - [Signals and Systems](https://youtube.com/playlist?list=PLIzv0-ErbDpxvwnZ3yFBLKuYP0fhDECov),
             2019
+          - [Scientific and Mathematical Thinking](https://youtu.be/E1suPmxor5s),
+            2022
           - [Mathematical Thinking and Writing](https://youtu.be/eqHsIbwvvrk),
             2021
           - [Science, Technology, and Gender Diversity](https://youtu.be/xUJ9e_hESG8),
