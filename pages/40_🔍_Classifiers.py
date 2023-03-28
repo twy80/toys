@@ -56,7 +56,7 @@ class NeuralNetwork(nn.Module):
 
 
 def classifier():
-    st.write("## 🛠️ Classification Algorithms")
+    st.write("## 🔍 Classification Algorithms")
 
     dataset_name = st.sidebar.radio(
         '$\\texttt{Select Dataset}$',
