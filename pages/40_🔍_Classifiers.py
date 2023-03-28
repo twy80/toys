@@ -119,7 +119,7 @@ def classifier():
     st.write(f"#### Classifier: :green[{clf_name}]")
 
     plt.rcParams.update({'font.size': 7})
-    st.write("- Tuning parameters")
+    st.write("- Tuning parameter(s)")
     _, right = st.columns([1, 30])
 
     if clf_name in {'Logistic Regression', 'Neural Network'}:
