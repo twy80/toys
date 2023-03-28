@@ -15,7 +15,9 @@
   - Fourier transform (of sound waves), which is an essential
     concept in signals and systems
 
-  - Use of OpenAI APIs, which is added for fun.
+  - Classification algorithms as an introduction to machine learning
+
+  - Use of OpenAI APIs, which has been added for fun.
 
 * All the pages and scripts are written in python using the
   Streamlit framework.

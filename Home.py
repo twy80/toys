@@ -30,8 +30,10 @@ def main():
           
           - Fourier transform (of sound waves), which is an essential concept
             in signals and systems
+
+          - Classification algorithms as an introduction to machine learning
  
-          - Use of OpenAI APIs, which is added for fun.
+          - Use of OpenAI APIs, which has been added for fun.
                   
         ### How this site is written
           
