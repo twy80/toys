@@ -6,7 +6,7 @@
   - Simulation of dynamical systems described by differential
     equations
 
-  - SVD (Sinular Value Decomposition) and its relation
+  - SVD (Singular Value Decomposition) and its relation
     to PCA (Principal Component Analysis)
 
   - SVD of an image file, which results in some sort of image
@@ -17,7 +17,7 @@
 
   - Classification algorithms as an introduction to machine learning
 
-  - Use of OpenAI APIs, which has been added for fun.
+  - Implementation of ChatGPT and DALL·E using their APIs.
 
 * All the pages and scripts are written in python using the
   Streamlit framework.

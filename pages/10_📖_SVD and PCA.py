@@ -107,7 +107,7 @@ def svd_pca():
         with a reduced amount of memory. This is what is meant by image
         compression using SVD. If a color image is given, the SVD can be
         performed to each of the three channels (e.g. red, green & blue).
-        To see how this works, try [🎨 SVD Image](./SVD_Image).
+        To see how this works, try [🎨 SVD of Image](./SVD_of_Image).
             
         ### SVD and PCA (Principal Component Analysis)
         
