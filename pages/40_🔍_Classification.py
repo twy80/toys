@@ -42,16 +42,18 @@ class LogisticRegression(nn.Module):
 
 
 class NeuralNetwork(nn.Module):
-    def __init__(self, input_size, hidden_size, num_classes):
+    def __init__(self, input_size, hidden_sizes, num_classes):
         super(NeuralNetwork, self).__init__()
-        self.fc1 = nn.Linear(input_size, hidden_size)
-        self.relu = nn.ReLU()
-        self.fc2 = nn.Linear(hidden_size, num_classes)
+        self.hidden_layers = nn.ModuleList()
+        self.hidden_layers.append(nn.Linear(input_size, hidden_sizes[0]))
+        for i in range(1, len(hidden_sizes)):
+            self.hidden_layers.append(nn.Linear(hidden_sizes[i-1], hidden_sizes[i]))
+        self.output_layer = nn.Linear(hidden_sizes[-1], num_classes)
 
     def forward(self, x):
-        out = self.fc1(x)
-        out = self.relu(out)
-        out = self.fc2(out)
+        for layer in self.hidden_layers:
+            x = torch.relu(layer(x))
+        out = self.output_layer(x)
         return out
 
 
@@ -128,10 +130,13 @@ def classifier():
         )
         num_epochs = right.slider("Number of epochs", 50, 500)
         if clf_name == 'Neural Network':
-            hidden_size = right.slider(
-                "Number of hidden units", 1, 10
-            )
-            model = NeuralNetwork(num_features, hidden_size, num_classes)
+            num_hidden_layers = right.slider('Number of hidden layers', 1, 10, 2, 1)
+            hidden_layer_sizes = []
+            for i in range(num_hidden_layers):
+                size = right.slider(f'Number of units in hidden layer {i+1}', 1, 100, 10, 1)
+                hidden_layer_sizes.append(size)
+
+            model = NeuralNetwork(num_features, hidden_layer_sizes, num_classes)
         else:
             model = LogisticRegression(num_features, num_classes)
 
