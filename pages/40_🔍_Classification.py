@@ -134,12 +134,12 @@ def classifier():
             num_hidden_layers = r1.slider('Number of hidden layers', 1, 10, 1, 1)
             hidden_layer_sizes = []
             for i in range(num_hidden_layers):
-                if i % 2 == 0:
-                    size = r2.slider(
+                if i <= num_hidden_layers/2 - 1:
+                    size = r1.slider(
                         f'Number of units in hidden layer {i+1}', 1, 100, 10, 1
                     )
                 else:
-                    size = r1.slider(
+                    size = r2.slider(
                         f'Number of units in hidden layer {i+1}', 1, 100, 10, 1
                     )
                 hidden_layer_sizes.append(size)
