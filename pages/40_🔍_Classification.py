@@ -125,16 +125,29 @@ def classifier():
     _, right = st.columns([1, 30])
     _, r1, _, r2 = st.columns([1, 13, 1, 13])
 
+    if "hidden_layer_sizes" not in st.session_state:
+        st.session_state.hidden_layer_sizes = 1
+
     if clf_name in {'Logistic Regression', 'Neural Network'}:
         learning_rate = r1.slider(
             "Learning rate", 0.001, 0.1, step=0.001, format="%.3f"
         )
-        num_epochs = r2.slider("Number of epochs", 50, 500)
         if clf_name == 'Neural Network':
-            num_hidden_layers = r1.slider('Number of hidden layers', 1, 10, 1, 1)
+            num_epochs = r1.slider("Number of epochs", 50, 500)
+            if st.session_state.hidden_layer_sizes == 1:
+                num_hidden_layers = r2.slider(
+                    'Number of hidden layers', 1, 10, 1, 1,
+                    key='hidden_layer_sizes'
+                )
+            else:
+                num_hidden_layers = r1.slider(
+                    'Number of hidden layers', 1, 10, 1, 1,
+                    key='hidden_layer_sizes'
+                )
+
             hidden_layer_sizes = []
             for i in range(num_hidden_layers):
-                if i <= num_hidden_layers/2 - 1:
+                if i < num_hidden_layers//2 - 1:
                     size = r1.slider(
                         f'Number of units in hidden layer {i+1}', 1, 100, 10, 1
                     )
@@ -146,6 +159,7 @@ def classifier():
 
             model = NeuralNetwork(num_features, hidden_layer_sizes, num_classes)
         else:
+            num_epochs = r2.slider("Number of epochs", 50, 500)
             model = LogisticRegression(num_features, num_classes)
 
         criterion = nn.CrossEntropyLoss()
