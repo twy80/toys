@@ -123,17 +123,25 @@ def classifier():
     plt.rcParams.update({'font.size': 7})
     st.write("- Tuning parameter(s)")
     _, right = st.columns([1, 30])
+    _, r1, _, r2 = st.columns([1, 13, 1, 13])
 
     if clf_name in {'Logistic Regression', 'Neural Network'}:
-        learning_rate = right.slider(
+        learning_rate = r1.slider(
             "Learning rate", 0.001, 0.1, step=0.001, format="%.3f"
         )
-        num_epochs = right.slider("Number of epochs", 50, 500)
+        num_epochs = r2.slider("Number of epochs", 50, 500)
         if clf_name == 'Neural Network':
-            num_hidden_layers = right.slider('Number of hidden layers', 1, 10, 2, 1)
+            num_hidden_layers = r1.slider('Number of hidden layers', 1, 10, 1, 1)
             hidden_layer_sizes = []
             for i in range(num_hidden_layers):
-                size = right.slider(f'Number of units in hidden layer {i+1}', 1, 100, 10, 1)
+                if i % 2 == 0:
+                    size = r2.slider(
+                        f'Number of units in hidden layer {i+1}', 1, 100, 10, 1
+                    )
+                else:
+                    size = r1.slider(
+                        f'Number of units in hidden layer {i+1}', 1, 100, 10, 1
+                    )
                 hidden_layer_sizes.append(size)
 
             model = NeuralNetwork(num_features, hidden_layer_sizes, num_classes)
@@ -181,11 +189,11 @@ def classifier():
             c_value = right.slider('C', 0.01, 10.0, step=0.01)
             clf = SVC(C=c_value)
         elif clf_name == 'K-Nearest Neighbors':
-            k_value = right.slider('K', 1, 15)
+            k_value = right.slider('K', 1, 10)
             clf = KNeighborsClassifier(n_neighbors=k_value)
         else:
-            max_depth = right.slider('Maximum depth', 2, 15)
-            n_estimators = right.slider(
+            max_depth = r1.slider('Maximum depth', 2, 10)
+            n_estimators = r2.slider(
                 'Numbeor of estimators', 1, 100
             )
             clf = RandomForestClassifier(
