@@ -214,12 +214,12 @@ def sim_pendulum_pid():
 
     # Animation
     # plt.rcParams.update({'font.size': 8})
-    # st.write("")
-    # st.write(
-    #     """
-    #     * Simulations results: animation
-    #     """
-    # )
+    st.write("")
+    st.write(
+        """
+        * Simulations results: animation
+        """
+    )
 
     fig, ax = plt.subplots()
 
@@ -277,10 +277,10 @@ def sim_pendulum_pid():
     )
     # st.pyplot(fig)
 
-    # with st.spinner("Preparing for animation..."):
-    #     animation.save('files/pendulum.gif', writer=PillowWriter())
+    with st.spinner("Preparing for animation..."):
+        animation.save('files/pendulum.gif', writer=PillowWriter())
 
-    # st.image("files/pendulum.gif")
+    st.image("files/pendulum.gif")
 
 
 def run_pendulum_pid():
