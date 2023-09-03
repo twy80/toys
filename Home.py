@@ -23,6 +23,9 @@ def main():
           - Simulation of dynamical systems described by differential
             equations
         
+          - PID control of an inverted pendulum on a cart as an example of
+            a feedback control system
+
           - SVD (Singular Value Decomposition) and its relation
             to PCA (Principal Component Analysis)
           
