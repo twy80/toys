@@ -76,12 +76,14 @@ def sim_pendulum_pid():
         
         * Cart-pendulum parameters
         
-        >> $M = 0.5$, $~m = 0.2$, $~\ell = 0.3$, $~b = 0.1$ (friction coefficient)
+        >> $M = 0.5$, $~m = 0.2$, $~\ell = 0.3$, $~b = 0.1~$
+           ($b\,$: Friction coefficient)
 
         * Open-loop poles:
           $~\\small {print_root(open_loop_poles[0]):>.2f}$,
           $~\\small {print_root(open_loop_poles[1]):>.2f}$,
-          $~\\small {print_root(open_loop_poles[2]):>.2f}$
+          $~\\small {print_root(open_loop_poles[2]):>.2f}~$
+          (Unstable!)
         """
     )
     st.write(
@@ -200,13 +202,13 @@ def sim_pendulum_pid():
 
     fig, ax = plt.subplots(2, 1)
     ax[0].plot(times, positions)
-    ax[0].set_ylabel('Position')
+    ax[0].set_ylabel('Cart position $\,x(t)$')
     ax[0].set_xlim([0, 5])
     ax[0].set_xticklabels([])
 
     # Set up the figure and axis for angle plot
     ax[1].plot(times, angles)
-    ax[1].set_ylabel('Angle')
+    ax[1].set_ylabel('Pendulum angle $\,\\theta(t)$')
     ax[1].set_xlabel('Time (sec)')
     ax[1].set_xlim([0, 5])
 
@@ -309,7 +311,7 @@ def run_pendulum_pid():
     st.image(
         "files/cart-pendulum.png",
         caption="Image from https://upload.wikimedia.org/wikipedia/commons/b/b6/Cart-pendulum.png",
-        width=500
+        width=450
     )
 
     st.write("")
@@ -356,7 +358,7 @@ def run_pendulum_pid():
     st.write("")
     st.write(
         """
-        ##### PID controller selection (via pole placement)
+        ##### PID controller tuning (via pole placement)
 
         > $K_p =  a_{m2}M\ell + (M+m)g$,
         > $~\,K_i = a_{m3}M\ell + bg$,
