@@ -122,10 +122,9 @@ def sim_pendulum_pid():
     right.write(
         f"""
         Closed-loop poles:
-    
         $\,\\small {print_root(closed_loop_poles[0]):>.2f}$,
-        $~\\small {print_root(closed_loop_poles[1]):>.2f}$,
-        $~\\small {print_root(closed_loop_poles[2]):>.2f}$
+        $\,\\small {print_root(closed_loop_poles[1]):>.2f}$,
+        $\,\\small {print_root(closed_loop_poles[2]):>.2f}$
         """
     )
     right.info(
