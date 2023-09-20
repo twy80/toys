@@ -7,7 +7,9 @@ import numpy as np
 from scipy.integrate import odeint
 import streamlit as st
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation, PillowWriter
+from matplotlib.animation import FuncAnimation
+# from matplotlib.animation import PillowWriter
+import streamlit.components.v1 as components
 
 
 # Define the dynamics of the pid controlled inverted pendulum
@@ -274,14 +276,14 @@ def sim_pendulum_pid():
         ax.set_title('Time: {:.2f}sec'.format(times[index]))
 
     animation = FuncAnimation(
-        fig, update_frame, frames=len(times), interval=1000*t_step
+        fig, update_frame, frames=len(times), interval=2000*t_step
     )
-    # st.pyplot(fig)
+    with st.spinner("Preparing animation..."):
+        components.html(animation.to_jshtml(), height=1000)
 
-    with st.spinner("Preparing for animation..."):
-        animation.save('files/pendulum.gif', writer=PillowWriter())
-
-    st.image("files/pendulum.gif")
+    # with st.spinner("Preparing animation..."):
+    #     animation.save('files/pendulum.gif', writer=PillowWriter())
+    # st.image("files/pendulum.gif")
 
 
 def run_pendulum_pid():
