@@ -236,7 +236,7 @@ def run_lorenz():
         if plot_opt == "Time responses & Phase portrait":
             states = "$x(t)$", "$y(t)$", "$z(t)$"
             colors = "k", "b", "g"
-            ax1 = 3 * [None]
+            ax1 = np.empty(3, dtype=object)
 
             for k in range(3):
                 ax1[k] = plt.subplot2grid((3, 2),  (k, 0), fig=fig)
