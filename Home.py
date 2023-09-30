@@ -40,8 +40,6 @@ def main():
 
         * See [TWY's Page for Differential Equations](https://diff-eqn.streamlit.app/)
           for more examples on dynamic systems written as differential equations.
-                  
-        ### How this site is written
           
         * All the pages and scripts are written in python using the Streamlit
           framework.
