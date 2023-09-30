@@ -37,6 +37,9 @@ def main():
           - Classification algorithms as an introduction to machine learning
  
           - Implementation of ChatGPT and DALL·E using their APIs.
+
+        * See [TWY's Page for Differential Equations](https://diff-eqn.streamlit.app/)
+          for more examples on dynamic systems written as differential equations.
                   
         ### How this site is written
           
