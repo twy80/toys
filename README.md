@@ -4,9 +4,9 @@
   toy examples:
   
   - Simulation of dynamical systems described by differential
-    equations.
-    See [TWY's Page for Differential Equations](https://diff-eqn.streamlit.app/)
-    for more examples on dynamic systems written as differential equations.
+    equations. Visit
+    [TWY's Page for Differential Equations](https://diff-eqn.streamlit.app/)
+    to find more examples on dynamic systems written as differential equations.
 
   - PID control of an inverted pendulum on a cart as an example of
     a feedback control system
