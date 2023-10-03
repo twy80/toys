@@ -38,10 +38,10 @@ def main():
  
           - Implementation of ChatGPT and DALL·E using their APIs.
 
-        * Visit
-          [TWY's Page for Differential Equations](https://diff-eqn.streamlit.app/)
-          to find more examples on dynamic systems written as differential equations.
-          
+        * You can find more examples on dynamic systems written as
+          differential equations on
+          [TWY's Page for Differential Equations](https://diff-eqn.streamlit.app/).
+
         * All the pages and scripts are written in python using the Streamlit
           framework.
     
