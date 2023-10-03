@@ -3,10 +3,7 @@
 * This is for my students and currently covers the following
   toy examples:
   
-  - Simulation of dynamical systems described by differential
-    equations. Visit
-    [TWY's Page for Differential Equations](https://diff-eqn.streamlit.app/)
-    to find more examples on dynamic systems written as differential equations.
+  - Simulation of dynamical systems described by differential equations.
 
   - PID control of an inverted pendulum on a cart as an example of
     a feedback control system
@@ -25,7 +22,10 @@
   - Implementation of ChatGPT and DALL·E using their APIs.
 
 * All the pages and scripts are written in python using the
-  Streamlit framework.
+  Streamlit framework. You can find more examples on dynamic
+  systems written as differential equations on
+  [TWY's Page for Differential Equations](https://diff-eqn.streamlit.app/).
+
 
 * TWY teaches engineering mathematics, signals and systems,
   technical writing, etc., at Korea University.
