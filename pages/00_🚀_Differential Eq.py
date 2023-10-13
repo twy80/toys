@@ -186,7 +186,7 @@ def run_lorenz():
     st.write("---")
 
     # Input the value of rho
-    rho_min, rho_init, rho_max = 1.0, 10.0, 30.0
+    rho_min, rho_init, rho_max = 0.1, 10.0, 30.0
 
     if "pre_rho" not in st.session_state:
         st.session_state.pre_rho = rho_init
