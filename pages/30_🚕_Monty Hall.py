@@ -218,7 +218,7 @@ def monty_hall():
     st.write("")
 
     if play_options == "Manual play":
-        c1, c2, c3, c4 = st.columns([3, 3, 3, 8])
+        c1, c2, c3, c4 = st.columns(4)
         if st.session_state.new_game:
             # Show the three closed doors
             st.session_state.selected = image_select(
