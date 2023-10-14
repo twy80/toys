@@ -279,7 +279,7 @@ def monty_hall():
         st.write(
             "You won the car", st.session_state.wins,
             "time(s) out of", no_of_games,
-            f"game(s) $\,\Rightarrow\,$ {percentage:>.1f}%."
+            f"game(s) $\,\Rightarrow\,$ :green[{percentage:>.1f}]%."
         )
 
 
