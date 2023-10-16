@@ -203,7 +203,7 @@ def run_lorenz():
     st.session_state.rho = input_method(
         label="$\\texttt{Value of }\\rho$",
         min_value=rho_min, max_value=rho_max, value=st.session_state.pre_rho,
-        step=0.1, format="%.2f"
+        step=0.01, format="%.2f"
     )
 
     t_lorenz = np.linspace(0, 25, 10001)
