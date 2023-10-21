@@ -11,3 +11,4 @@ audio-recorder-streamlit
 streamlit-image-select
 langdetect
 gTTS
+pyperclip
