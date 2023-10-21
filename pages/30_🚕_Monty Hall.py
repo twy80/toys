@@ -209,7 +209,7 @@ def monty_hall():
         st.session_state.button_enabled = True
 
     st.write("**Play options**")
-    play_options = st.radio(
+    play_option = st.radio(
         label="Play Options",
         options=("Manual play", "Automatic play"),
         horizontal=True,
@@ -217,7 +217,7 @@ def monty_hall():
     )
     st.write("")
 
-    if play_options == "Manual play":
+    if play_option == "Manual play":
         c1, c2, c3, c4 = st.columns(4)
         if st.session_state.new_game:
             # Show the three closed doors
