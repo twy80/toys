@@ -10,7 +10,7 @@ def redirect_to_chatgpt_dalle_app():
     # Redirects the user to the ChatGPT DALL·E application.
 
     url = "https://chatgpt-dalle.streamlit.app/"
-    webbrowser.open_new_tab(url)
+    webbrowser.open(url)
 
 
 if __name__ == "__main__":
