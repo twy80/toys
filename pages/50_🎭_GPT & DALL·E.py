@@ -15,5 +15,5 @@ def redirect_to_chatgpt_dalle_app():
     st.markdown(page, unsafe_allow_html=True)
 
 
-if __name__ㄴ== "__main__":
+if __name__ == "__main__":
     redirect_to_chatgpt_dalle_app()
