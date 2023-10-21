@@ -3,7 +3,7 @@
 * This is for my students and currently covers the following
   toy examples:
   
-  - Simulation of dynamical systems described by differential equations.
+  - Simulation of dynamical systems described by differential equations
 
   - PID control of an inverted pendulum on a cart as an example of
     a feedback control system
@@ -19,7 +19,7 @@
 
   - Simulation of the Monty Hall problem, a popular probability puzzle
     in which a contestant has a probability of winning a car that is
-    greater than or equal to 1/3.
+    at least 1/3
 
   - Classification algorithms as an introduction to machine learning
 
