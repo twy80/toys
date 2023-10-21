@@ -36,7 +36,7 @@ def main():
 
           - Simulation of the Monty Hall problem, a popular probability puzzle
             in which a contestant has a probability of winning a car that is
-            greater than or equal to 1/3
+            at least 1/3
 
           - Classification algorithms as an introduction to machine learning
 
