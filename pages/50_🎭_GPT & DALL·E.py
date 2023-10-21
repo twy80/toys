@@ -1,5 +1,5 @@
 """
-ChatGPT & DALL·E using openai API (by T.-W. Yoon, Mar. 2023)
+ChatGPT & DALL·E using openai API (by T.-W. Yoon, Aug. 2023)
 """
 
 import openai
