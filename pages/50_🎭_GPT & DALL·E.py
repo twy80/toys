@@ -8,8 +8,8 @@ from audio_recorder_streamlit import audio_recorder
 from langdetect import detect
 from gtts import gTTS
 import base64
-import clipboard
 # from io import BytesIO
+# import clipboard
 
 
 def openai_create_text(
@@ -95,12 +95,11 @@ def openai_create_image(description, size="512x512"):
 
 
 def reset_conversation():
-    to_clipboard = ""
-    for (human, ai) in zip(st.session_state.human_enq, st.session_state.ai_resp):
-        to_clipboard += "\nHuman: " + human + "\n"
-        to_clipboard += "\nAI: " + ai + "\n"
-    clipboard.copy(to_clipboard)
-
+    # to_clipboard = ""
+    # for (human, ai) in zip(st.session_state.human_enq, st.session_state.ai_resp):
+    #     to_clipboard += "\nHuman: " + human + "\n"
+    #     to_clipboard += "\nAI: " + ai + "\n"
+    # clipboard.copy(to_clipboard)
     st.session_state.generated_text = None
     st.session_state.prompt = [
         {"role": "system", "content": st.session_state.prev_ai_role}
@@ -276,7 +275,7 @@ def create_text(model):
 
             st.session_state.human_enq.append(user_prompt)
             st.session_state.ai_resp.append(st.session_state.generated_text)
-            clipboard.copy(st.session_state.generated_text)
+            # clipboard.copy(st.session_state.generated_text)
 
     st.session_state.prompt_exists = False
     st.button(
