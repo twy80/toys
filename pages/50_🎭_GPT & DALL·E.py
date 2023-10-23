@@ -238,7 +238,7 @@ def create_text(model):
 
     # Reset the conversation
     st.button(
-        label="Reset"Reset the conversation."",
+        label="Reset the conversation",
         on_click=reset_conversation
     )
 
