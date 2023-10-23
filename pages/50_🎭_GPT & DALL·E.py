@@ -282,6 +282,7 @@ def create_text(model):
                         # tts.write_to_fp(text_audio_file)
                     # autoplay_audio(text_audio_file)
                     # st.audio(text_audio_file.getvalue())
+                    st.session_state.play_audio = True
                 except Exception as e:
                     st.error(f"An error occurred: {e}", icon="🚨")
 
