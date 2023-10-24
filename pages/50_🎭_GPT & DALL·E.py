@@ -402,7 +402,6 @@ def openai_create():
 
     if not authen:
         st.error("**Incorrect password. Please try again.**", icon="🚨")
-        st.session_state.error_present = True
     elif option == 'Text (GPT 3.5)':
         create_text("gpt-3.5-turbo")
     elif option == 'Text (GPT 4)':
