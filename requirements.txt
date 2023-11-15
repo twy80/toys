@@ -9,3 +9,4 @@ openai
 streamlit
 audio-recorder-streamlit
 streamlit-image-select
+langchain
