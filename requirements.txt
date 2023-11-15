@@ -10,3 +10,6 @@ streamlit
 audio-recorder-streamlit
 streamlit-image-select
 langchain
+pypdf
+faiss-cpu
+tiktoken
