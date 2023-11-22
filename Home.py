@@ -40,10 +40,8 @@ def main():
 
           - Classification algorithms as an introduction to machine learning
 
-          - Implementation of ChatGPT and DALL·E using their APIs
-            (Speech-To-Text and Text-To-Speech functions are implemented
-            using a Whisper model and gTTS, respectively, and languages
-            are automatically detected).
+          - Implementation of ChatGPT, RAG (Retrieval Augmented Generation),
+            and DALL·E with STT and TTS using OpenAI and langchain functions
 
         * You can find more examples on dynamic systems written as
           differential equations on
