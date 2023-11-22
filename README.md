@@ -24,7 +24,7 @@
   - Classification algorithms as an introduction to machine learning
 
   - Implementation of ChatGPT, RAG (Retrieval Augmented Generation),
-    and DALL·E with STT and TTS using OpenAI and langchain functions
+    and DALL·E with STT and TTS using OpenAI and langchain functions.
 
 
 * All the pages and scripts are written in python using the
