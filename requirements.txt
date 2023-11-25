@@ -11,5 +11,6 @@ audio-recorder-streamlit
 streamlit-image-select
 langchain
 pypdf
+docx2txt
 faiss-cpu
 tiktoken
