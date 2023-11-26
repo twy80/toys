@@ -551,8 +551,7 @@ def create_text_image():
                 type="password",
                 label_visibility="collapsed",
             )
-            # st.write("You can obtain an API key from https://beta.openai.com")
-            authen = True
+            authen = False if st.session_state.openai_api_key == "" else True
         else:
             st.session_state.openai_api_key = st.secrets["openai_api_key"]
             stored_pin = st.secrets["user_PIN"]
@@ -577,7 +576,7 @@ def create_text_image():
         )
 
     if not authen:
-        st.error("**Incorrect password. Please try again.**", icon="🚨")
+        st.error("**Invalid value. Please try again.**", icon="🚨")
     elif option == "Text (GPT 3.5)":
         create_text("gpt-3.5-turbo")
     elif option == "Text (GPT 4)":
