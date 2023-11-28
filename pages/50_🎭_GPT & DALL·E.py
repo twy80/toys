@@ -157,6 +157,13 @@ def document_qna(user_prompt, vector_store, model="gpt-3.5-turbo"):
     """
 
     if vector_store is not None:
+        if st.session_state.memory is None:
+            st.session_state.memory = ConversationBufferMemory(
+                memory_key="chat_history",
+                return_messages=True,
+                output_key="answer"
+            )
+
         openai_llm = ChatOpenAI(
             openai_api_key=st.session_state.openai_api_key,
             temperature=0,
@@ -164,17 +171,12 @@ def document_qna(user_prompt, vector_store, model="gpt-3.5-turbo"):
             streaming=True,
             callbacks=[StreamHandler(st.empty())]
         )
-        memory = ConversationBufferMemory(
-            memory_key="chat_history",
-            return_messages=True,
-            output_key="answer"
-        )
         conversation_chain = ConversationalRetrievalChain.from_llm(
             llm=openai_llm,
             chain_type="stuff",
             retriever=vector_store.as_retriever(),
             # retriever=vector_store.as_retriever(search_type="mmr"),
-            memory=memory,
+            memory=st.session_state.memory,
             return_source_documents=True
         )
 
@@ -267,6 +269,7 @@ def reset_conversation():
     st.session_state.play_audio = False
     st.session_state.vector_store = None
     st.session_state.sources = None
+    st.session_state.memory = None
 
 
 def switch_between_apps():
@@ -331,6 +334,9 @@ def create_text(model):
 
     if "sources" not in st.session_state:
         st.session_state.sources = None
+
+    if "memory" not in st.session_state:
+        st.session_state.memory = None
 
     with st.sidebar:
         st.write("")
