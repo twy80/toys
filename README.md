@@ -25,8 +25,7 @@
 
   - Implementation of ChatGPT (with images), RAG (Retrieval Augmented
     Generation), and DALL·E using OpenAI and langchain functions;
-    Voice recognition and Voice recognition and Text-To-Speech (TTS)
-    are supported.
+    Voice recognition and Text-To-Speech (TTS) are supported.
 
 
 * All the pages and scripts are written in python using the
