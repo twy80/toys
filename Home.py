@@ -42,8 +42,7 @@ def main():
 
           - Implementation of ChatGPT (with images), RAG (Retrieval Augmented
             Generation), and DALL·E using OpenAI and langchain functions;
-            Voice recognition and Voice recognition and Text-To-Speech (TTS)
-            are supported.
+            Voice recognition and Text-To-Speech (TTS) are supported.
 
         * You can find more examples on dynamic systems written as
           differential equations on
