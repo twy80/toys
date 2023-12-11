@@ -408,7 +408,7 @@ def perform_tts(text):
     return audio_response
 
 
-def autoplay_audio(audio_response):
+def play_audio(audio_response):
     """
     This function takes an audio response (a bytes-like object)
     from TTS as input, and plays the audio.
@@ -611,7 +611,7 @@ def create_text(model):
 
     # Play TTS
     if st.session_state.audio_response is not None:
-        autoplay_audio(st.session_state.audio_response)
+        play_audio(st.session_state.audio_response)
         st.session_state.audio_response = None
 
     # Reset the conversation
