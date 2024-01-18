@@ -13,6 +13,10 @@ def main():
 
     st.write(f"## {page_icon} {page_title}")
 
+    with st.sidebar:
+        st.write("[ChatGPT & DALL·E](https://chatgpt-dalle.streamlit.app/)")
+        st.write("[OpenAI Assistants](https://assistants.streamlit.app/)")
+
     st.write(
         """
         ### What this site is for
@@ -43,6 +47,8 @@ def main():
           - Implementation of ChatGPT (with images), RAG (Retrieval Augmented
             Generation), and DALL·E using OpenAI and langchain functions;
             Voice recognition and Text-To-Speech (TTS) are supported.
+
+          - Implementation of OpenAI assistants using the Assistants API
 
         * You can find more examples on dynamic systems written as
           differential equations on
