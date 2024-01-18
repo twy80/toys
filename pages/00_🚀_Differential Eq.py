@@ -286,6 +286,15 @@ def run_sim():
     run_rlc()
     run_lorenz()
 
+    st.write("")
+    st.write(
+        """
+        ##### More examples including the above can be found below:
+
+        [TWY's Page for Differential Equations](https://diff-eqn.streamlit.app/).
+        """
+    )
+
 
 if __name__ == "__main__":
     run_sim()
