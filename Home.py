@@ -45,8 +45,8 @@ def main():
             Voice recognition and Text-To-Speech (TTS) are supported
 
           - Implementation of OpenAI assistants using the Assistants API,
-            enabling users to create their own custom chatbots; such
-            tools as retrieval and code interpreter can be used.
+            enabling users to create their own custom chatbots; tools such
+            as retrieval and code interpreter can be used.
 
         * You can find more examples on dynamic systems written as
           differential equations on
