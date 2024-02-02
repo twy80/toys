@@ -7,8 +7,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 # from pydub import AudioSegment
-from scipy.io.wavfile import read
+import soundfile as sf
 from audio_recorder_streamlit import audio_recorder
+from io import BytesIO
 
 
 def note_sound(freq=391.9954, sample_rate=44100, seconds=2):
@@ -218,13 +219,13 @@ def fourier_transform():
     )
 
     if sound_source == "Sample file":
-        sr, signal = read("files/example.wav")
+        signal, sr = sf.read("files/example.wav")
     else:
         if sound_source == "Your file":
             audio_file = st.file_uploader(
                 label="$\\hspace{0.12em}\\texttt{Upload an audio file}$",
                 # type=["wav", "mp3", "ogg", "aac", "wma", "m4a", "flac"],
-                type=["wav"],
+                type=["wav", "mp3", "ogg", "flac"],
                 label_visibility="collapsed"
             )
             if audio_file is None:
@@ -240,14 +241,13 @@ def fourier_transform():
                 icon_size="2x",
             )
             if audio_bytes:
-                audio_file = "files/recorded_audio.wav"
-                with open(audio_file, "wb") as recorded_file:
-                    recorded_file.write(audio_bytes)
+                audio_file = BytesIO(audio_bytes)
+                audio_file.name = "recorded_audio.wav"  # dummy name
             else:
                 return None
         try:
             # signal, sr = get_audio_data(audio_file)
-            sr, signal = read(audio_file)
+            signal, sr = sf.read(audio_file)
         except Exception as e:
             st.error(f"An error occurred: {e}", icon="🚨")
             return None
