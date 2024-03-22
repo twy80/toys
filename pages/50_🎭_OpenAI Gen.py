@@ -12,14 +12,15 @@ def openai_generate():
         """
         ##### Two apps using OpenAI's large language models are presented as follows:
 
-        - [ChatGPT & DALL·E](https://chatgpt-dalle.streamlit.app/),
+        - [LangChain OpenAI Agent](https://langchain-openai-agent.streamlit.app/),
           which implements ChatGPT (with images), RAG (Retrieval Augmented
-          Generation), and DALL·E using OpenAI and langchain functions.
+          Generation), and DALL·E using OpenAI and LangChain functions.
+          Internet search is also supported by Tavily Sesrch.
 
         - [OpenAI Assistants](https://assistants.streamlit.app/),
           which enables users to create their own custom
           chatbots using the Assistants API; such tools as
-          retrieval and code interpreter can be used.
+          retrieval, code interpreter, and Tavily Search can be used.
         """
     )
 
