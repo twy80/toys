@@ -19,7 +19,7 @@ def openai_generate():
 
         - [OpenAI Assistants](https://assistants.streamlit.app/),
           which enables users to create their own custom
-          chatbots using the Assistants API; such tools as
+          chatbots using the Assistants API; tools such as
           retrieval, code interpreter, and Tavily Search can be used.
         """
     )
