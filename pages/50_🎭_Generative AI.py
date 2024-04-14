@@ -10,7 +10,7 @@ def openai_generate():
 
     st.write(
         """
-        ##### Two apps using OpenAI's large language models are presented as follows:
+        ##### Three apps using OpenAI's large language models are presented as follows:
 
         - [LangChain OpenAI Agent](https://langchain-openai-agent.streamlit.app/),
           which implements ChatGPT (with images), RAG (Retrieval Augmented
