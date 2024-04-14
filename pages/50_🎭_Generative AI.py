@@ -21,6 +21,10 @@ def openai_generate():
           which enables users to create their own custom
           chatbots using the Assistants API; tools such as
           retrieval, code interpreter, and Tavily Search can be used.
+
+        - [Multi-Agent Debate](https://multi-agent-debate.streamlit.app/),
+          which enables two agents to on a given topic. LangChain and OpenAI
+          functions are employed, along with tools such as Tavily Search.
         """
     )
 
