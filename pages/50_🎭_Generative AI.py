@@ -12,7 +12,7 @@ def openai_generate():
         """
         ##### Three apps using OpenAI's large language models are presented as follows:
 
-        - [LangChain OpenAI Agent](https://langchain-openai-agent.streamlit.app/),
+        - [LangChain LLM Agent](https://langchain-llm-agent.streamlit.app/),
           which implements ChatGPT (with images), RAG (Retrieval Augmented
           Generation), and DALL·E using OpenAI and LangChain functions.
           Internet search is also supported by Tavily Sesrch.
