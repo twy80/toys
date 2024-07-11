@@ -10,7 +10,7 @@ def generative_ai():
 
     st.write(
         """
-        ##### Three apps using large language models (LLMs) such as GPT-4o and Gemini-flash are presented as follows:
+        Three apps using large language models (LLMs) such as GPT-4o and Gemini-flash are presented as follows:
 
         - [LangChain LLM Agent](https://langchain-llm-agent.streamlit.app/),
           which implements agents using LangChain. GPT models from OpenAI or Gemini models
