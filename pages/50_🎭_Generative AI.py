@@ -13,8 +13,9 @@ def generative_ai():
         Three agent apps using LLMs such as GPT-4o and Gemini-flash are presented as follows:
 
         - [LangChain LLM Agent](https://langchain-llm-agent.streamlit.app/),
-          which implements agents using LangChain. GPT models from OpenAI or Gemini models
-          from Google can be used together with tools.
+          which implements agents using LangChain. GPT models from OpenAI,
+          Claude models from Anthropic, or Gemini models from Google can be used
+          together with tools such as internet search, python REPL, RAG, etc.
 
         - [OpenAI Assistants](https://assistants.streamlit.app/),
           which enables users to create their own custom
