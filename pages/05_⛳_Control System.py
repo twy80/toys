@@ -73,27 +73,25 @@ def sim_pendulum_pid():
 
     st.write("")
     st.write(
-        f"""
+        r"""
         ##### Simulations
         
         * Cart-pendulum parameters
         
-        >> $M = 0.5$, $~m = 0.2$, $~\ell = 0.3$, $~b = 0.1~$
-           ($b\,$: Friction coefficient)
+        $\hspace{2em} M = 0.5$, $~m = 0.2$, $~\ell = 0.3$, $~b = 0.1~$ ($b\,$: Friction coefficient)
 
         * Open-loop poles:
-          $~\\small {print_root(open_loop_poles[0]):>.2f}$,
-          $~\\small {print_root(open_loop_poles[1]):>.2f}$,
-          $~\\small {print_root(open_loop_poles[2]):>.2f}~$
+          $~\small {print_root(open_loop_poles[0]):>.2f}$,
+          $~\small {print_root(open_loop_poles[1]):>.2f}$,
+          $~\small {print_root(open_loop_poles[2]):>.2f}~$
           (Unstable!)
         """
     )
     st.write(
-        """
-        * PID gains resulting from $~a_{m1} = 33.1$, $~a_{m2} = 93.3$,
-          $~a_{m3} = 9.0$
+        r"""
+        * PID gains resulting from $~a_{m1} = 33.1$, $~a_{m2} = 93.3$, $~a_{m3} = 9.0$
 
-        >> $K_p = 20.86$, $~K_i = 2.33$, $~K_d = 4.94$ 
+        $\hspace{2em} K_p = 20.86$, $~K_i = 2.33$, $~K_d = 4.94$ 
 
         * Further tune the PID gains
         """
@@ -353,14 +351,14 @@ def run_pendulum_pid():
     )
     st.write("")
     st.write(
-        """
+        r"""
         ##### PID controller tuning (via pole placement)
 
-        > $K_p =  a_{m2}M\ell + (M+m)g$,
-        > $~\,K_i = a_{m3}M\ell + bg$,
-        > $~\,K_d = a_{m1}M\ell - b\ell$
+        ${\displaystyle \hspace{2em} K_p =  a_{m2}M\ell + (M+m)g}$,
+        ${\displaystyle ~\,K_i = a_{m3}M\ell + bg}$,
+        ${\displaystyle ~\,K_d = a_{m1}M\ell - b\ell}$
         
-        > where $\,s^3 + a_{m1}s^2 + a_{m2}s + a_{m3}\,$ is the desired characteristic polynomial
+        where $\,s^3 + a_{m1}s^2 + a_{m2}s + a_{m3}\,$ is the desired characteristic polynomial
         """
     )
 
