@@ -7,6 +7,4 @@ torch
 pillow
 streamlit
 audio-recorder-streamlit
-streamlit-image-select
 soundfile
-
