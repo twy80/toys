@@ -317,43 +317,38 @@ def run_pendulum_pid():
 
     st.write("")
     st.write(
-        """
+        r"""
         ##### Mathematical model for simulation
 
-        > ${\\displaystyle \\ddot{x} = \\frac{1}{M + m \sin^2\\theta}
-        \left(F - b\dot{x} - m\ell\dot{\\theta}^2\sin\\theta + mg\sin\\theta\cos\\theta\\right)}$
+        > ${\displaystyle \ddot{x} = \frac{1}{M + m \sin^2\theta}\left(F - b\dot{x} - m\ell\dot{\theta}^2\sin\theta + mg\sin\theta\cos\theta\right)}$
         
-        > ${\\displaystyle \\ddot{\\theta} = \\frac{1}{(M + m \sin^2\\theta)\ell}
-        \left((F - b\dot{x})\cos\\theta - m\ell\dot{\\theta}^2\sin\\theta\cos\\theta + (M+m)g\sin\\theta\\right)}$
+        > ${\displaystyle \ddot{\theta} = \frac{1}{(M + m \sin^2\theta)\ell}\left((F - b\dot{x})\cos\theta - m\ell\dot{\theta}^2\sin\theta\cos\theta + (M+m)g\sin\theta\right)}$
         """
     )
 
     st.write("")
     st.write(
-        """
+        r"""
         ##### PID (Proportional Integral Derivative) control
         
-        > ${\\displaystyle F = K_p e + K_i \int_0^t e(\\tau)d\\tau + K_d \dot{e}}~~~$
-        where $~~e = \\theta_{ref} - \\theta =  0 - \\theta$
+        > ${\displaystyle F = K_p e + K_i \int_0^t e(\tau)d\tau + K_d \dot{e}}~~~$ where $~~e = \theta_{ref} - \theta =  0 - \theta$
 
-        > ${\\displaystyle \hat{F}(s) = -\\frac{K_d s^2 + K_p s + K_i}{s}\,\hat{\\theta}(s)}$
+        > ${\displaystyle \hat{F}(s) = -\frac{K_d s^2 + K_p s + K_i}{s}\,\hat{\theta}(s)}$
         """
     )
 
     st.write("")
     st.write(
-        """
+        r"""
         ##### Linearized model for tuning the PID controller
         
-        > ${\\displaystyle ~~~\:\,\,\\ddot{x} \\approx -\\frac{b}{M}\dot{x} + \\frac{m}{M}g\\theta + \\frac{1}{M}F}$
+        > ${\displaystyle ~~~\:\,\,\ddot{x} \approx -\frac{b}{M}\dot{x} + \frac{m}{M}g\theta + \frac{1}{M}F}$
         
-        > ${\\displaystyle ~~~\:\,\,\\ddot{\\theta} \\approx -\\frac{b}{M\ell}\dot{x} + \\frac{M+m}{M\ell}g\\theta + \\frac{1}{M\ell}F}$
+        > ${\displaystyle ~~~\:\,\,\ddot{\theta} \approx -\frac{b}{M\ell}\dot{x} + \frac{M+m}{M\ell}g\theta + \frac{1}{M\ell}F}$
 
-        > ${\\displaystyle \hat{\\theta}(s) \\approx \\frac{\\frac{1}{M\ell}s}
-        {s^3 + \\frac{b}{M}s^2 - \\frac{(M+m)g}{M\ell}s - \\frac{bg}{M\ell}}\hat{F}(s) = -\\frac{\\frac{1}{m\ell}(K_ds^2 + K_ps + K_i)}
-        {s^3 + \\frac{b}{M}s^2 - \\frac{(M+m)g}{M\ell}s - \\frac{bg}{M\ell}}\hat{\\theta}(s)}$
+        > ${\displaystyle \hat{\theta}(s) \approx \frac{\frac{1}{M\ell}s}{s^3 + \frac{b}{M}s^2 - \frac{(M+m)g}{M\ell}s - \frac{bg}{M\ell}}\hat{F}(s) = -\frac{\frac{1}{m\ell}(K_ds^2 + K_ps + K_i)}{s^3 + \frac{b}{M}s^2 - \frac{(M+m)g}{M\ell}s - \frac{bg}{M\ell}}\hat{\theta}(s)}$
     
-        > $\,\,\left(s^3 + (\\frac{K_d}{M\ell}+\\frac{b}{M})s^2 + (\\frac{K_p}{M\ell}-\\frac{(M+m)g}{M\ell})s + (\\frac{K_i}{M\ell}-\\frac{bg}{M\ell})\\right)\hat{\\theta}(s) \\approx 0$
+        > ${\displaystyle \left(s^3 + (\frac{b}{M} + \frac{b}{M\ell})s^2 + (\frac{K_p}{M\ell} - \frac{(M+m)g}{M\ell})s + (\frac{K_i}{M\ell} - \frac{bg}{M\ell})\right)\hat{\theta}(s) \approx 0}$
         """
     )
     st.write("")
