@@ -144,23 +144,16 @@ def fourier_transform():
 
     st.write("")
     st.write(
-        """
+        r"""
         ##### Mathematical definitions
 
         * Continuous-time Fourier transform
 
-        >> ${\displaystyle F(j\omega)
-           = \int_{-\infty}^\infty f(t)e^{-j\omega t}dt},\quad$
-           ${\displaystyle f(t)
-           = \\frac{1}{2\pi}\int_{-\infty}^\infty
-           F(j\omega)e^{j\omega t}d\omega}$
+        >> ${\displaystyle F(j\omega) = \int_{-\infty}^\infty f(t)e^{-j\omega t}dt},\quad$ ${\displaystyle f(t) = \frac{1}{2\pi}\int_{-\infty}^\infty F(j\omega)e^{j\omega t}d\omega}$
 
         * Discrete-time Fourier transform
 
-        >> ${\displaystyle F(e^{j\omega})
-           = \sum_{n=-\infty}^\infty f[n]e^{-j\omega n}},\quad\:\!$
-           ${\displaystyle f[n] = \\frac{1}{2\pi}\int_{-\pi}^\pi
-           F(e^{j\omega})e^{j\omega n}d\omega}$
+        >> ${\displaystyle F(e^{j\omega}) = \sum_{n=-\infty}^\infty f[n]e^{-j\omega n}},\quad\:\!$ ${\displaystyle f[n] = \frac{1}{2\pi}\int_{-\pi}^\pi F(e^{j\omega})e^{j\omega n}d\omega}$
         """
     )
     st.write(
