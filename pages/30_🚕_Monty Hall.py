@@ -227,6 +227,9 @@ def monty_hall():
     st.write("")
 
     if play_option == "Manual play":
+        if st.session_state.new_game:
+            st.session_state.doors = doors_closed[:]
+
         # Add side margins to reduce door image size and perfectly align buttons with doors
         _, col1, col2, col3, _ = st.columns([0.5, 2, 2, 2, 0.5])
         door_cols = [col1, col2, col3]
