@@ -40,14 +40,6 @@ def main():
 
           - Classification algorithms as an introduction to machine learning
 
-          - Implementation of ChatGPT (with images), RAG (Retrieval Augmented
-            Generation), and DALL·E using OpenAI and langchain functions;
-            Voice recognition and Text-To-Speech (TTS) are supported
-
-          - Implementation of OpenAI assistants using the Assistants API,
-            enabling users to create their own custom chatbots; tools such
-            as retrieval and code interpreter can be used.
-
         * You can find more examples on dynamic systems written as
           differential equations on
           [TWY's Page for Differential Equations](https://diff-eqn.streamlit.app/).
