@@ -237,7 +237,7 @@ def monty_hall():
         # 1. Show 3 door images
         for idx in range(3):
             with door_cols[idx]:
-                st.image(st.session_state.doors[idx], caption=door_captions[idx], use_column_width=True)
+                st.image(st.session_state.doors[idx], caption=door_captions[idx], use_container_width=True)
 
         # 2. Controls by game stage
         if st.session_state.new_game:
