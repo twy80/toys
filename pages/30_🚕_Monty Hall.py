@@ -237,14 +237,14 @@ def monty_hall():
         # 1. Show 3 door images
         for idx in range(3):
             with door_cols[idx]:
-                st.image(st.session_state.doors[idx], caption=door_captions[idx], width='stretch)
+                st.image(st.session_state.doors[idx], caption=door_captions[idx], width='stretch')
 
         # 2. Controls by game stage
         if st.session_state.new_game:
             # Stage 1: Choose door
             for idx in range(3):
                 with door_cols[idx]:
-                    if st.button(f"Choose Door {idx + 1}", key=f"choose_door_btn_{idx}", width='stretch):
+                    if st.button(f"Choose Door {idx + 1}", key=f"choose_door_btn_{idx}", width='stretch'):
                         st.session_state.selected = idx
                         choose_door()
                         st.rerun()
@@ -253,7 +253,7 @@ def monty_hall():
             # Stage 2: Delay & Host revealing goat door
             for idx in range(3):
                 with door_cols[idx]:
-                    st.button(f"Choose Door {idx + 1}", disabled=True, width='stretch)
+                    st.button(f"Choose Door {idx + 1}", disabled=True, width='stretch')
 
             with st.spinner("The host is opening a goat door... 🚕🐐"):
                 time.sleep(1.0)  # Delay time in seconds
@@ -268,8 +268,8 @@ def monty_hall():
             # Stage 3: Keep or Switch decision (Show Keep & Switch buttons only)
             st.write("")
             c1, c2 = st.columns(2)
-            c1.button(label="$~~\:\,$Keep$~~\:\,$", on_click=keep_choice, width='stretch)
-            c2.button(label="$~\,\,$Switch$~\,\,$", on_click=switch_choice, width='stretch)
+            c1.button(label="$~~\:\,$Keep$~~\:\,$", on_click=keep_choice, width='stretch')
+            c2.button(label="$~\,\,$Switch$~\,\,$", on_click=switch_choice, width='stretch')
 
             # Let the user know how to play
             st.write(
@@ -283,8 +283,8 @@ def monty_hall():
             # Stage 4: Result phase (Show Play again & Reset buttons only)
             st.write("")
             c1, c2 = st.columns(2)
-            c1.button(label="Play again", on_click=play_again, width='stretch)
-            c2.button(label="$~\:\,\,$Reset$~\:\,\,$", on_click=reset_game, width='stretch)
+            c1.button(label="Play again", on_click=play_again, width='stretch')
+            c2.button(label="$~\:\,\,$Reset$~\:\,\,$", on_click=reset_game, width='stretch')
 
     else:  # Automatic play
         st.session_state.new_game = True
